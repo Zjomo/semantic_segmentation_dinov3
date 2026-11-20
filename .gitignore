@@ -10,3 +10,8 @@ build/
 
 test_data/
 dinov3_weights/
+instance/
+*.db
+*.sqlite
+*.sqlite3
+weights/
