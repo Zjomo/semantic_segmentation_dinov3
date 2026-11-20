@@ -1,0 +1,40 @@
+<VI syntaxVersion=11 LVversion=21008000 revision=6 name="calculator.vi">
+<TITLE>Research MCP Calculator</TITLE>
+<HELP_PATH></HELP_PATH>
+<HELP_TAG></HELP_TAG>
+<RTM_PATH type="default"></RTM_PATH>
+<DESC>Deterministic numeric calculator VI for scientific automation via MCP. Use it for quick arithmetic checks, calibration offsets, parameter sanity checks, and reproducible test calculations before larger workflows. This version performs x plus y and returns the numeric result.</DESC>
+<CONTENT>
+	<GROUPER>
+		<PARTS>
+		</PARTS></GROUPER>
+	<CONTROL ID=80 type="数值" name="y">
+		<DESC>Second numeric operand for the MCP calculator.</DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID=82 order=0 type="标题"><LABEL><STEXT>operand y</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID=80 type="数值" name="x">
+		<DESC>First numeric operand for the MCP calculator.</DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID=82 order=0 type="标题"><LABEL><STEXT>operand x</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID=80 type="数值" name="x+y">
+		<DESC>Calculated result for the current calculator operation x plus y.</DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID=82 order=0 type="标题"><LABEL><STEXT>calculated result</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+</CONTENT>
+<BDCONTENT>
+	<NODE ID=47 type="Function" primID=20444441 primName="加">
+		<DESC></DESC>
+	</NODE>
+</BDCONTENT>
+</VI>
+
+

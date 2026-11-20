@@ -1,0 +1,45 @@
+<VI syntaxVersion=11 LVversion=21008000 revision=7 name="MCP Server tests.lvlib:hello_from_tool.vi">
+<TITLE><NO_TITLE name="MCP Server tests.lvlib:hello_from_tool.vi"></TITLE>
+<HELP_PATH></HELP_PATH>
+<HELP_TAG></HELP_TAG>
+<RTM_PATH type="default"></RTM_PATH>
+<DESC>This is a fake tool to test the MCP Server. It takes a string as input and returns a string ""<<input string>> says hello"".</DESC>
+<CONTENT>
+	<GROUPER>
+		<PARTS>
+		</PARTS></GROUPER>
+	<CONTROL ID=81 type="字符串" name="input string">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID=11 order=0 type="文本"><LABEL><STEXT></STEXT></LABEL></PART>
+			<PART ID=82 order=0 type="标题"><LABEL><STEXT>input string</STEXT></LABEL></PART>
+		</PARTS>
+		<DEFAULT><SAME_AS_LABEL></DEFAULT>
+	</CONTROL>
+	<CONTROL ID=81 type="字符串" name="resulting string">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID=11 order=0 type="文本"><LABEL><STEXT></STEXT></LABEL></PART>
+			<PART ID=82 order=0 type="标题"><LABEL><STEXT>resulting string</STEXT></LABEL></PART>
+		</PARTS>
+		<DEFAULT><SAME_AS_LABEL></DEFAULT>
+	</CONTROL>
+</CONTENT>
+<BDCONTENT>
+	<CONTROL ID=81 type="字符串常量" name="format string">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID=11 order=0 type="文本"><LABEL><STEXT></STEXT></LABEL></PART>
+		</PARTS>
+		<DEFAULT><STRING>%s says hello!</STRING></DEFAULT>
+	</CONTROL>
+	<NODE ID=147 type="Format Into String">
+		<DESC></DESC>
+	</NODE>
+</BDCONTENT>
+</VI>
+
+

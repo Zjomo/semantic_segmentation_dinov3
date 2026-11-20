@@ -1,0 +1,150 @@
+============================================================
+驱动器运动总结
+============================================================
+  [  1] RIGHT       8 steps
+  [  2] RIGHT       8 steps
+  [  3] RIGHT       8 steps
+  [  4] RIGHT       8 steps
+  [  5] RIGHT       8 steps
+  [  6] RIGHT       8 steps
+  [  7] RIGHT       8 steps
+  [  8] RIGHT       8 steps
+  [  9]  DOWN       1 steps
+  [ 10]  LEFT       8 steps
+  [ 11]  LEFT       8 steps
+  [ 12]  LEFT       8 steps
+  [ 13]  LEFT       8 steps
+  [ 14]  LEFT       8 steps
+  [ 15]  LEFT       8 steps
+  [ 16]  LEFT       8 steps
+  [ 17]  LEFT       8 steps
+  [ 18]  DOWN       1 steps
+  [ 19] RIGHT       8 steps
+  [ 20] RIGHT       8 steps
+  [ 21] RIGHT       8 steps
+  [ 22] RIGHT       8 steps
+  [ 23] RIGHT       8 steps
+  [ 24] RIGHT       8 steps
+  [ 25] RIGHT       8 steps
+  [ 26] RIGHT       8 steps
+  [ 27]  DOWN       1 steps
+  [ 28]  LEFT       8 steps
+  [ 29]  LEFT       8 steps
+  [ 30]  LEFT       8 steps
+  [ 31]  LEFT       8 steps
+  [ 32]  LEFT       8 steps
+  [ 33]  LEFT       8 steps
+  [ 34]  LEFT       8 steps
+  [ 35]  LEFT       8 steps
+  [ 36]  DOWN       1 steps
+  [ 37] RIGHT       8 steps
+  [ 38] RIGHT       8 steps
+  [ 39] RIGHT       8 steps
+  [ 40] RIGHT       8 steps
+  [ 41] RIGHT       8 steps
+  [ 42] RIGHT       8 steps
+  [ 43] RIGHT       8 steps
+  [ 44]  DOWN       1 steps
+  [ 45]  LEFT       8 steps
+  [ 46]  LEFT       8 steps
+  [ 47]  LEFT       8 steps
+  [ 48]  LEFT       8 steps
+  [ 49]  LEFT       8 steps
+  [ 50]  LEFT       8 steps
+  [ 51]  LEFT       8 steps
+  [ 52]  LEFT       8 steps
+  [ 53]  DOWN       1 steps
+  [ 54] RIGHT       8 steps
+  [ 55] RIGHT       8 steps
+  [ 56] RIGHT       8 steps
+  [ 57] RIGHT       8 steps
+  [ 58] RIGHT       8 steps
+  [ 59] RIGHT       8 steps
+  [ 60] RIGHT       8 steps
+  [ 61] RIGHT       8 steps
+  [ 62]  DOWN       1 steps
+  [ 63]  LEFT       8 steps
+  [ 64]  LEFT       8 steps
+  [ 65]  LEFT       8 steps
+  [ 66]  LEFT       8 steps
+  [ 67]  LEFT       8 steps
+  [ 68]  LEFT       8 steps
+  [ 69]  LEFT       8 steps
+  [ 70]  LEFT       8 steps
+  [ 71]  DOWN       1 steps
+  [ 72] RIGHT       8 steps
+  [ 73] RIGHT       8 steps
+  [ 74] RIGHT       8 steps
+  [ 75] RIGHT       8 steps
+  [ 76] RIGHT       8 steps
+  [ 77] RIGHT       8 steps
+  [ 78] RIGHT       8 steps
+  [ 79] RIGHT       8 steps
+  [ 80]  DOWN       1 steps
+  [ 81]  LEFT       8 steps
+  [ 82]  LEFT       8 steps
+  [ 83]  LEFT       8 steps
+  [ 84]  LEFT       8 steps
+  [ 85]  LEFT       8 steps
+  [ 86]  LEFT       8 steps
+  [ 87]  LEFT       8 steps
+  [ 88]  LEFT       8 steps
+  [ 89]  DOWN       1 steps
+  [ 90] RIGHT       8 steps
+  [ 91] RIGHT       8 steps
+  [ 92] RIGHT       8 steps
+  [ 93] RIGHT       8 steps
+  [ 94] RIGHT       8 steps
+  [ 95] RIGHT       8 steps
+  [ 96] RIGHT       8 steps
+  [ 97] RIGHT       8 steps
+  [ 98]  DOWN       1 steps
+  [ 99]  LEFT       8 steps
+  [100]  LEFT       8 steps
+  [101]  LEFT       8 steps
+  [102]  LEFT       8 steps
+  [103]  LEFT       8 steps
+  [104]  LEFT       8 steps
+  [105]  LEFT       8 steps
+  [106]  LEFT       8 steps
+  [107]  DOWN       1 steps
+  [108] RIGHT       8 steps
+  [109] RIGHT       8 steps
+  [110] RIGHT       8 steps
+  [111] RIGHT       8 steps
+  [112] RIGHT       8 steps
+  [113] RIGHT       8 steps
+  [114] RIGHT       8 steps
+  [115] RIGHT       8 steps
+  [116]  DOWN       1 steps
+  [117]  LEFT       8 steps
+  [118]  LEFT       8 steps
+  [119]  LEFT       8 steps
+  [120]  LEFT       8 steps
+  [121]  LEFT       8 steps
+  [122]  LEFT       8 steps
+  [123]  LEFT       8 steps
+  [124]  DOWN       1 steps
+  [125] RIGHT       8 steps
+  [126] RIGHT       8 steps
+  [127] RIGHT       8 steps
+  [128] RIGHT       8 steps
+  [129] RIGHT       8 steps
+  [130] RIGHT       8 steps
+  [131] RIGHT       8 steps
+  [132] RIGHT       8 steps
+  [133]  DOWN       1 steps
+  [134]  LEFT       8 steps
+  [135]  LEFT       8 steps
+  [136]  LEFT       8 steps
+  [137]  LEFT       8 steps
+  [138]  LEFT       8 steps
+  [139]  LEFT       8 steps
+  [140]  LEFT       8 steps
+  [141]  LEFT       8 steps
+  [142]  DOWN       1 steps
+------------------------------------------------------------
+  净水平位移 (Net X): +0 steps
+  净垂直位移 (Net Y): +16 steps
+  总动作数:           142
+============================================================

@@ -1,0 +1,58 @@
+============================================================
+驱动器运动总结
+============================================================
+  [  1]  LEFT       3 steps
+  [  2]  LEFT       3 steps
+  [  3]  LEFT       3 steps
+  [  4]  LEFT       3 steps
+  [  5]  LEFT       3 steps
+  [  6]  LEFT       3 steps
+  [  7]  LEFT       3 steps
+  [  8]  LEFT       3 steps
+  [  9]  LEFT       3 steps
+  [ 10]  LEFT       3 steps
+  [ 11]  LEFT       3 steps
+  [ 12]  LEFT       3 steps
+  [ 13]  LEFT       3 steps
+  [ 14]  LEFT       3 steps
+  [ 15]  LEFT       3 steps
+  [ 16]  LEFT       3 steps
+  [ 17] RIGHT       3 steps
+  [ 18] RIGHT       3 steps
+  [ 19] RIGHT       3 steps
+  [ 20] RIGHT       3 steps
+  [ 21] RIGHT       3 steps
+  [ 22] RIGHT       3 steps
+  [ 23] RIGHT       3 steps
+  [ 24] RIGHT       3 steps
+  [ 25] RIGHT       3 steps
+  [ 26] RIGHT       3 steps
+  [ 27] RIGHT       3 steps
+  [ 28] RIGHT       3 steps
+  [ 29] RIGHT       3 steps
+  [ 30] RIGHT       3 steps
+  [ 31] RIGHT       3 steps
+  [ 32] RIGHT       3 steps
+  [ 33]  DOWN       3 steps
+  [ 34]  LEFT       3 steps
+  [ 35]  LEFT       3 steps
+  [ 36]  LEFT       3 steps
+  [ 37]  LEFT       3 steps
+  [ 38]  LEFT       3 steps
+  [ 39]  LEFT       3 steps
+  [ 40]  LEFT       3 steps
+  [ 41]  LEFT       3 steps
+  [ 42]  LEFT       3 steps
+  [ 43]  LEFT       3 steps
+  [ 44]  LEFT       3 steps
+  [ 45]  LEFT       3 steps
+  [ 46]  LEFT       3 steps
+  [ 47]  LEFT       3 steps
+  [ 48]  LEFT       3 steps
+  [ 49]  LEFT       3 steps
+  [ 50]  DOWN       3 steps
+------------------------------------------------------------
+  净水平位移 (Net X): -48 steps
+  净垂直位移 (Net Y): +6 steps
+  总动作数:           50
+============================================================

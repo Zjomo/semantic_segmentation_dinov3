@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#171b20">
+    <link rel="icon" href="data:,">
+    <title>CoreSegment · 路径复核</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #20252b;
+        --muted: #737c86;
+        --line: #e4e7e9;
+        --paper: #f4f6f5;
+        --panel: #fff;
+        --rail: #191e23;
+        --rail-muted: #98a1aa;
+        --green: #1cbd83;
+        --amber: #f4c94b;
+        --red: #ed655e;
+        --blue: #5793e6;
+        --map-ratio: 2.33;
+        font-family: "Segoe UI", "Microsoft YaHei UI", sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 340px; min-height: 100vh; background: var(--paper); color: var(--ink); }
+      button, select, input { font: inherit; }
+      button { color: inherit; }
+      button:focus-visible, select:focus-visible, input:focus-visible, label:focus-within { outline: 3px solid #84b8a5; outline-offset: 2px; }
+      button:disabled { cursor: not-allowed; opacity: .48; }
+
+      .app { min-height: 100vh; display: grid; grid-template-rows: 62px minmax(0, 1fr); }
+      .topbar { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; background: #fff; border-bottom: 1px solid var(--line); }
+      .brand, .top-actions, .brand-mark, .crumb, .title-row, .toolbar, .toolbar-group, .stage-heading, .stage-tools, .panel-heading, .panel-heading > div, .legend-label, .run-row, .run-label, .meta-row, .timeline-head, .timeline-controls, .timeline-status, .footer-row, .state-label { display: flex; align-items: center; }
+      .brand { gap: 11px; min-width: 0; }
+      .brand-mark { width: 30px; height: 30px; justify-content: center; border-radius: 7px; background: #20272c; color: var(--green); }
+      .brand-name { font-size: 15px; font-weight: 690; letter-spacing: .2px; }
+      .brand-sub { margin-left: 2px; padding-left: 12px; color: #9aa1a7; border-left: 1px solid #d8dcde; font-size: 12px; }
+      .top-actions { gap: 13px; }
+      .project-status { display: flex; align-items: center; gap: 7px; color: #68716e; font-size: 12px; }
+      .status-dot { width: 7px; aspect-ratio: 1; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px #e3f6ee; }
+      .top-divider { height: 22px; border-left: 1px solid var(--line); }
+      .top-note { color: var(--muted); font-size: 12px; }
+
+      .shell { min-height: 0; display: grid; grid-template-columns: 208px minmax(0, 1fr); }
+      .sidebar { display: flex; flex-direction: column; padding: 23px 12px 16px; background: var(--rail); color: #eef1f2; }
+      .side-caption { padding: 0 12px; color: #7e8992; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+      .nav-list { display: grid; gap: 5px; margin-top: 12px; }
+      .nav-item { display: flex; align-items: center; gap: 11px; min-height: 39px; padding: 0 12px; color: var(--rail-muted); border: 0; border-radius: 5px; background: transparent; text-align: left; font-size: 13px; cursor: pointer; }
+      .nav-item:hover { color: #fff; background: #252c32; }
+      .nav-item.active { color: #fff; background: #29342f; box-shadow: inset 2px 0 var(--green); }
+      .nav-item.active svg { color: var(--green); }
+      .nav-item svg { flex: none; }
+      .side-spacer { flex: 1; min-height: 28px; }
+      .side-project { padding: 13px 12px; border-top: 1px solid #2b3238; }
+      .side-project small { display: block; margin-bottom: 8px; color: #89939a; font-size: 10px; }
+      .side-project strong { display: block; overflow: hidden; color: #e9edee; font-size: 12px; font-weight: 570; text-overflow: ellipsis; white-space: nowrap; }
+      .side-project span { display: block; margin-top: 6px; color: #89939a; font-size: 10px; }
+
+      .workspace { min-width: 0; padding: 23px 24px 16px; }
+      .workspace-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; margin-bottom: 17px; }
+      .crumb { gap: 8px; margin-bottom: 7px; color: #838b91; font-size: 11px; }
+      .crumb svg { width: 12px; height: 12px; }
+      h1 { margin: 0; font-size: 20px; font-weight: 660; line-height: 1.3; }
+      .subtitle { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+      .head-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+      .button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 34px; padding: 0 11px; border: 1px solid #dfe3e4; border-radius: 5px; background: #fff; color: #40484f; font-size: 11px; cursor: pointer; transition: background .15s, border-color .15s; }
+      .button:hover { background: #f8f9f8; border-color: #cbd1d2; }
+      .button.primary { border-color: #20272c; background: #20272c; color: white; }
+      .button.primary:hover { background: #30383d; }
+      .button svg { width: 14px; height: 14px; }
+
+      .workspace-grid { display: grid; grid-template-columns: minmax(0, 1fr) 266px; align-items: start; gap: 15px; }
+      .main-column { min-width: 0; }
+      .stage-panel, .timeline-panel, .inspector-panel { border: 1px solid #e5e8e8; border-radius: 6px; background: var(--panel); }
+      .stage-panel { overflow: hidden; }
+      .stage-heading { justify-content: space-between; gap: 12px; min-height: 48px; padding: 0 14px; border-bottom: 1px solid #e9ebeb; }
+      .stage-heading > div:first-child { min-width: 0; }
+      .stage-title { color: #30373c; font-size: 12px; font-weight: 640; }
+      .stage-subtitle { overflow: hidden; margin-left: 8px; color: #939a9f; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+      .stage-tools { gap: 4px; flex: none; }
+      .icon-button { display: inline-grid; width: 30px; height: 30px; place-items: center; border: 1px solid transparent; border-radius: 4px; background: transparent; color: #707981; cursor: pointer; }
+      .icon-button:hover { border-color: #e5e8e8; background: #f6f8f7; color: #30383c; }
+      .icon-button svg { width: 15px; height: 15px; }
+      .map-viewport { position: relative; display: grid; min-height: 270px; height: clamp(270px, 42vh, 430px); place-items: center; overflow: hidden; background: #252b30; }
+      .map-artwork { position: relative; width: 100%; height: 100%; }
+      .map-image, .mask-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+      .mask-image { opacity: 0; mix-blend-mode: screen; transition: opacity .18s ease; }
+      .skeleton-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; mix-blend-mode: screen; transition: opacity .18s ease; pointer-events: none; }
+      .map-image { user-select: none; -webkit-user-drag: none; }
+      #routeCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: auto; cursor: crosshair; }
+      .map-placeholder { position: absolute; inset: 0; display: none; place-items: center; padding: 20px; color: #fff; text-align: center; }
+      .map-placeholder.visible { display: grid; }
+      .placeholder-inner { max-width: 300px; }
+      .placeholder-icon { display: grid; width: 48px; height: 48px; margin: 0 auto 12px; place-items: center; border: 1px solid #727b80; border-radius: 8px; color: #d9dfdc; }
+      .placeholder-inner strong { display: block; font-size: 14px; }
+      .placeholder-inner p { margin: 7px 0 13px; color: #b0b8bc; font-size: 11px; line-height: 1.55; }
+      .placeholder-inner .button { border-color: #687278; background: #343c42; color: #fff; }
+      .map-hud { position: absolute; right: 12px; bottom: 11px; left: 12px; display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none; }
+      .scale { display: flex; align-items: flex-end; gap: 7px; color: #e5e8e8; font-size: 9px; text-shadow: 0 1px 3px #14191d; }
+      .scale-line { width: 42px; height: 7px; border: 1px solid #e5e8e8; border-top: 0; }
+      .map-coord { padding: 5px 7px; border: 1px solid #ffffff26; border-radius: 3px; background: #1d242ab3; color: #d4dadc; font: 9px/1.1 Consolas, monospace; }
+      .map-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 9px; min-height: 43px; padding: 6px 12px; border-top: 1px solid #e8ebeb; }
+      .toolbar-group { flex-wrap: wrap; gap: 13px; }
+      .check-row { display: inline-flex; align-items: center; gap: 6px; color: #596269; font-size: 10px; cursor: pointer; user-select: none; }
+      .check-row input { width: 13px; height: 13px; margin: 0; accent-color: #259a73; }
+      .swatch { width: 8px; height: 8px; border-radius: 2px; }
+      .zoom-label { min-width: 40px; color: #687179; font: 10px Consolas, monospace; text-align: center; }
+      .zoom-controls { display: flex; align-items: center; gap: 2px; }
+      .zoom-controls .icon-button { width: 25px; height: 25px; }
+      .timeline-panel { margin-top: 12px; padding: 12px 14px 11px; }
+      .timeline-head { justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+      .timeline-title { font-size: 11px; font-weight: 640; }
+      .timeline-count { color: #858e94; font-size: 10px; }
+      .timeline-row { display: grid; grid-template-columns: 1fr 130px; align-items: center; gap: 14px; }
+      input[type="range"] { width: 100%; height: 4px; margin: 0; accent-color: #27b783; cursor: pointer; }
+      .timeline-controls { justify-content: flex-end; gap: 7px; }
+      .play-button { display: inline-flex; width: 30px; height: 29px; align-items: center; justify-content: center; border: 1px solid #e0e4e4; border-radius: 4px; background: #fff; color: #30383e; cursor: pointer; }
+      .play-button:hover { background: #f7f9f8; }
+      .play-button svg { width: 13px; height: 13px; }
+      .timeline-status { justify-content: space-between; gap: 8px; margin-top: 9px; color: #7d868c; font-size: 9px; }
+      .timeline-status strong { color: #50595f; font-weight: 560; }
+      .segments { display: flex; height: 3px; gap: 2px; margin-top: 10px; }
+      .segments i { flex: 1; border-radius: 2px; background: #dce3e1; }
+      .segments i.done { background: var(--green); }
+      .segments i.current { background: var(--amber); }
+
+      .inspector { display: grid; gap: 12px; min-width: 0; }
+      .inspector-panel { overflow: hidden; }
+      .panel-heading { justify-content: space-between; min-height: 42px; padding: 0 13px; border-bottom: 1px solid #ebeeee; }
+      .panel-heading > div { gap: 7px; }
+      .panel-heading strong { font-size: 11px; font-weight: 650; }
+      .panel-kicker { color: #929a9f; font-size: 9px; }
+      .panel-body { padding: 12px 13px; }
+      .dataset-select { width: 100%; min-height: 34px; padding: 0 9px; border: 1px solid #dfe4e3; border-radius: 4px; background: #fff; color: #3b444a; font-size: 10px; }
+      .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 9px; margin-top: 13px; }
+      .meta-item small { display: block; color: #8a9398; font-size: 9px; }
+      .meta-item strong { display: block; overflow: hidden; margin-top: 4px; color: #343c41; font: 600 12px/1.2 Consolas, "Segoe UI", sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+      .meta-item strong em { color: #778189; font-size: 9px; font-style: normal; font-weight: 450; }
+      .separator { height: 1px; margin: 13px 0; background: #edf0ef; }
+      .section-label { margin-bottom: 8px; color: #818a90; font-size: 9px; }
+      .legend { display: grid; gap: 10px; }
+      .legend-label { gap: 8px; color: #586168; font-size: 10px; }
+      .legend-label .swatch { width: 9px; height: 9px; }
+      .legend-label span:last-child { margin-left: auto; color: #929a9f; font-size: 9px; }
+      .run-list { display: grid; gap: 0; max-height: 210px; overflow-y: auto; }
+      .run-row { justify-content: space-between; gap: 8px; min-height: 32px; border-bottom: 1px solid #f0f2f1; color: #626c72; font-size: 9px; }
+      .run-row:last-child { border-bottom: 0; }
+      .run-label { gap: 7px; min-width: 0; }
+      .run-index { display: grid; width: 20px; height: 20px; flex: none; place-items: center; border-radius: 4px; background: #f1f4f3; color: #77818a; font: 9px Consolas, monospace; }
+      .run-row.current .run-index { background: #fff4cb; color: #92720a; }
+      .run-direction { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .run-value { flex: none; color: #525d64; font: 10px Consolas, monospace; }
+      .notice { display: flex; gap: 8px; padding: 10px; border: 1px solid #f0e5c4; border-radius: 4px; background: #fffaf0; color: #7d6b39; font-size: 9px; line-height: 1.5; }
+      .notice svg { flex: none; width: 13px; height: 13px; margin-top: 1px; }
+      .footer-row { justify-content: space-between; gap: 8px; margin-top: 14px; color: #8a9397; font-size: 9px; }
+      .state-label { gap: 6px; }
+      .state-label .status-dot { width: 6px; box-shadow: none; }
+      .toast { position: fixed; right: 18px; bottom: 18px; z-index: 10; max-width: min(350px, calc(100vw - 36px)); padding: 10px 13px; border: 1px solid #d6e9e0; border-radius: 5px; background: #fff; box-shadow: 0 6px 22px #1c28221a; color: #33443c; font-size: 11px; opacity: 0; transform: translateY(7px); transition: opacity .18s, transform .18s; pointer-events: none; }
+      .toast.visible { opacity: 1; transform: translateY(0); }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+      @media (max-width: 1100px) {
+        .workspace { padding: 19px 18px 14px; }
+        .workspace-grid { grid-template-columns: minmax(0, 1fr) 240px; gap: 11px; }
+        .sidebar { width: 182px; }
+        .shell { grid-template-columns: 182px minmax(0, 1fr); }
+        .workspace-head { align-items: flex-start; }
+      }
+      @media (max-width: 820px) {
+        .app { grid-template-rows: 56px auto; }
+        .topbar { padding: 0 15px; }
+        .top-note, .brand-sub { display: none; }
+        .shell { display: block; }
+        .sidebar { display: none; }
+        .workspace { padding: 17px 15px 20px; }
+        .workspace-grid { grid-template-columns: minmax(0, 1fr); }
+        .inspector { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+        .inspector-panel:last-child { grid-column: 1 / -1; }
+        .map-viewport { height: clamp(250px, 48vw, 390px); }
+      }
+      @media (max-width: 520px) {
+        body { min-width: 340px; }
+        .topbar { padding: 0 12px; }
+        .brand-name { font-size: 14px; }
+        .top-actions { gap: 9px; }
+        .project-status { font-size: 10px; }
+        .workspace { padding: 15px 11px 18px; }
+        .workspace-head { display: block; margin-bottom: 12px; }
+        .head-actions { justify-content: flex-start; margin-top: 12px; }
+        .head-actions .button { min-height: 32px; }
+        .stage-heading { align-items: flex-start; padding: 11px 10px; }
+        .stage-heading > div:first-child { display: grid; gap: 3px; }
+        .stage-subtitle { margin: 0; }
+        .stage-tools { gap: 0; }
+        .map-viewport { min-height: 230px; height: 55vw; max-height: 300px; }
+        .map-toolbar { align-items: flex-start; padding: 9px 10px; }
+        .toolbar-group { gap: 8px 12px; }
+        .check-row { font-size: 9px; }
+        .timeline-panel { padding: 11px 10px; }
+        .timeline-row { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+        .timeline-controls { gap: 4px; }
+        .timeline-status { font-size: 8px; }
+        .inspector { grid-template-columns: minmax(0, 1fr); }
+        .inspector-panel:last-child { grid-column: auto; }
+        .run-list { max-height: 190px; }
+        .footer-row { align-items: flex-start; flex-direction: column; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 20 20" width="17" height="17" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h6v6H7zM1.8 6h2M1.8 10h2M1.8 14h2M16.2 6h2M16.2 10h2M16.2 14h2M6 1.8v2M10 1.8v2M14 1.8v2M6 16.2v2M10 16.2v2M14 16.2v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <span class="brand-name">CoreSegment</span><span class="brand-sub">视觉路径工作台</span>
+        </div>
+        <div class="top-actions"><span class="project-status"><i class="status-dot" aria-hidden="true"></i>本地数据已就绪</span><span class="top-divider" aria-hidden="true"></span><span class="top-note">语义分割 · 全局路径复核</span></div>
+      </header>
+
+      <div class="shell">
+        <aside class="sidebar" aria-label="主导航">
+          <span class="side-caption">工作区</span>
+          <nav class="nav-list">
+            <button class="nav-item active" type="button" aria-current="page" data-nav="review"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true"><rect x="2.5" y="3" width="15" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 13.5 8 10.8l2.3 1.9 3.9-4.2 2.3 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>地图复核</span></button>
+            <button class="nav-item" type="button" data-nav="segmentation"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true"><path d="M3 4.5h14M3 10h14M3 15.5h14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="4.5" r="2" fill="#5793e6"/><circle cx="12.5" cy="10" r="2" fill="#1cbd83"/><circle cx="9" cy="15.5" r="2" fill="#ed655e"/></svg><span>分割图层</span></button>
+            <button class="nav-item" type="button" data-nav="records"><svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true"><path d="M5 3h10a1.5 1.5 0 0 1 1.5 1.5v13L10 14l-6.5 3.5v-13A1.5 1.5 0 0 1 5 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M7 6.5h6M7 9.5h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span>扫描记录</span></button>
+          </nav>
+          <div class="side-spacer"></div>
+          <div class="side-project"><small>当前项目</small><strong>CoreSegment / Scan</strong><span>语义分割 + 骨架路径</span></div>
+        </aside>
+
+        <main class="workspace">
+          <div class="workspace-head">
+            <div>
+              <div class="crumb"><span>工作区</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>地图复核</span></div>
+              <h1>芯片全局地图</h1>
+              <p class="subtitle">检查语义分割、骨架连通性与切割路径</p>
+            </div>
+            <div class="head-actions">
+              <button id="importButton" class="button" type="button" title="导入本地图像"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 13V3m0 0L6.5 6.5M10 3l3.5 3.5M3.5 12.5v3A1.5 1.5 0 0 0 5 17h10a1.5 1.5 0 0 0 1.5-1.5v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>导入底图</button>
+              <button id="exportImage" class="button primary" type="button" title="导出当前复核视图"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v10m0 0 3.5-3.5M10 13 6.5 9.5M4 14.5v1A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>导出视图</button>
+              <input id="fileInput" class="sr-only" type="file" accept="image/png,image/jpeg,image/webp" aria-label="导入底图文件">
+            </div>
+          </div>
+
+          <div class="workspace-grid">
+            <section class="main-column" aria-label="地图与路径复核">
+              <section class="stage-panel" aria-labelledby="stageHeading">
+                <div class="stage-heading">
+                  <div><span class="stage-title" id="stageHeading">全局拼接图</span><span class="stage-subtitle" id="datasetCaption">ToupView / test4 · 语义分割结果</span></div>
+                  <div class="stage-tools">
+                    <button class="icon-button" id="fitButton" type="button" aria-label="适配视图" title="适配视图"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4M7 7l-4-4m10 4 4-4M7 13l-4 4m10-4 4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="icon-button" id="downloadCoords" type="button" aria-label="导出路径坐标" title="导出路径坐标 JSON"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 3.5h6l4 4v9A1.5 1.5 0 0 1 13.5 18h-8A1.5 1.5 0 0 1 4 16.5v-11A2 2 0 0 1 6 3.5Zm5.5.5v4h4M7 12h6M7 14.5h6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  </div>
+                </div>
+                <div class="map-viewport" id="mapViewport">
+                  <div class="map-artwork" id="mapArtwork">
+                    <img class="map-image" id="mapImage" alt="芯片扫描拼接全景底图">
+                    <img class="skeleton-image" id="skeletonImage" alt="完整骨架拓扑图层">
+                    <img class="mask-image" id="maskImage" alt="语义分割类别叠加图">
+                    <canvas id="routeCanvas" aria-label="芯片切割路径预览图，使用鼠标点击可定位路径进度" role="img"></canvas>
+                  </div>
+                  <div class="map-placeholder" id="mapPlaceholder" role="status">
+                    <div class="placeholder-inner"><div class="placeholder-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-13Z" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="9" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="m5 17 4.4-4.1a1 1 0 0 1 1.4 0l2.1 2 2.3-2a1 1 0 0 1 1.3 0l3.2 2.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><strong id="placeholderTitle">底图加载中</strong><p id="placeholderText">正在读取本地扫描样例。</p><button class="button" id="placeholderImport" type="button">选择本地图像</button></div>
+                  </div>
+                  <div class="map-hud" aria-hidden="true"><div class="scale"><span class="scale-line"></span><span>参考比例</span></div><span class="map-coord" id="coordinateReadout">X 000 · Y 000</span></div>
+                </div>
+                <div class="map-toolbar">
+                  <div class="toolbar-group" aria-label="地图图层">
+                    <label class="check-row"><input id="routeToggle" type="checkbox" checked><i class="swatch" style="background:#f4c94b"></i>切割路径</label>
+                    <label class="check-row"><input id="skeletonToggle" type="checkbox"><i class="swatch" style="background:#c4d0cb"></i>完整骨架</label>
+                    <label class="check-row"><input id="maskToggle" type="checkbox"><i class="swatch" style="background:#5793e6"></i>分割类别</label>
+                  </div>
+                  <div class="zoom-controls" aria-label="缩放地图"><button class="icon-button" id="zoomOut" type="button" aria-label="缩小" title="缩小"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.7" stroke="currentColor" stroke-width="1.3"/><path d="m13 13 4 4M6 8.7h5.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button><span id="zoomLabel" class="zoom-label">100%</span><button class="icon-button" id="zoomIn" type="button" aria-label="放大" title="放大"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.7" stroke="currentColor" stroke-width="1.3"/><path d="m13 13 4 4M6 8.7h5.4M8.7 6v5.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button></div>
+                </div>
+              </section>
+
+              <section class="timeline-panel" aria-labelledby="timelineTitle">
+                <div class="timeline-head"><strong class="timeline-title" id="timelineTitle">路径预览</strong><span class="timeline-count" id="timelineCount">读取扫描记录中</span></div>
+                <div class="timeline-row"><input id="progressSlider" type="range" min="0" max="100" value="0" aria-label="路径预览进度"><div class="timeline-controls"><button class="play-button" id="stepBack" type="button" aria-label="上一步" title="上一步"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 4v12M15 5 7 10l8 5V5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button><button class="play-button" id="playButton" type="button" aria-label="播放路径预览" title="播放路径预览"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 9 6-9 6V4Z" fill="currentColor"/></svg></button><button class="play-button" id="stepForward" type="button" aria-label="下一步" title="下一步"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14 4v12M5 5l8 5-8 5V5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button></div></div>
+                <div class="timeline-status"><span id="progressText"><strong>0%</strong> · 起点</span><span id="motionText">预览模式，不控制扫描设备</span></div>
+                <div class="segments" id="segments" aria-hidden="true"></div>
+              </section>
+            </section>
+
+            <aside class="inspector" aria-label="样例信息与扫描记录">
+              <section class="inspector-panel">
+                <div class="panel-heading"><div><strong>样例数据</strong></div><span class="panel-kicker">LOCAL</span></div>
+                <div class="panel-body">
+                  <label class="sr-only" for="datasetSelect">选择扫描样例</label>
+                  <select class="dataset-select" id="datasetSelect" aria-label="选择扫描样例"></select>
+                  <div class="meta-grid">
+                    <div class="meta-item"><small>底图分辨率</small><strong id="resolutionValue">—</strong></div>
+                    <div class="meta-item"><small>切割路径点</small><strong id="pathCountValue">—</strong></div>
+                    <div class="meta-item"><small>骨架像素</small><strong id="skeletonValue">—</strong></div>
+                    <div class="meta-item"><small>扫描动作</small><strong id="recordCountValue">—</strong></div>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="section-label">分割类别</div>
+                  <div class="legend">
+                    <div class="legend-label"><i class="swatch" style="background:#1cbd83"></i><strong style="font-weight:550">Road</strong><span>路径区域</span></div>
+                    <div class="legend-label"><i class="swatch" style="background:#5793e6"></i><strong style="font-weight:550">Obstacle</strong><span>障碍区域</span></div>
+                    <div class="legend-label"><i class="swatch" style="background:#ed655e"></i><strong style="font-weight:550">Boundary</strong><span>芯片边界</span></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="inspector-panel" id="recordsPanel">
+                <div class="panel-heading"><div><strong>扫描动作</strong><span class="panel-kicker" id="recordBadge">—</span></div><button class="icon-button" id="exportLog" type="button" aria-label="导出扫描日志" title="导出扫描日志"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v10m0 0 3.5-3.5M10 13 6.5 9.5M4 14.5v1A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5v-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+                <div class="panel-body"><div class="run-list" id="runList" aria-live="polite"></div></div>
+              </section>
+
+              <div class="notice" role="note"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M10 8.7v4.2m0-6.4v.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>路径与扫描动作来自仓库中的已保存样例。此页面用于结果复核，不执行模型推理或硬件运动。</span></div>
+            </aside>
+          </div>
+          <div class="footer-row"><span class="state-label"><i class="status-dot" aria-hidden="true"></i><span id="footerState">已加载本地扫描样例</span></span><span>坐标单位：像素 · 原点：左上角</span></div>
+        </main>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      (() => {
+        const el = id => document.getElementById(id);
+        const ui = {
+          select: el('datasetSelect'), image: el('mapImage'), mask: el('maskImage'), skeletonImage: el('skeletonImage'), canvas: el('routeCanvas'),
+          artwork: el('mapArtwork'), viewport: el('mapViewport'), placeholder: el('mapPlaceholder'),
+          slider: el('progressSlider'), routeToggle: el('routeToggle'), skeletonToggle: el('skeletonToggle'), maskToggle: el('maskToggle'),
+          segments: el('segments'), runList: el('runList'), zoomLabel: el('zoomLabel'), toast: el('toast')
+        };
+        const ctx = ui.canvas.getContext('2d');
+        const state = { dataset: null, route: [], skeleton: [], records: [], progress: 0, zoom: 1, playing: false, timer: null, userImage: null, toastTimer: null };
+
+        function showToast(message) {
+          ui.toast.textContent = message;
+          ui.toast.classList.add('visible');
+          clearTimeout(state.toastTimer);
+          state.toastTimer = setTimeout(() => ui.toast.classList.remove('visible'), 2400);
+        }
+
+        function fitMap() {
+          if (!state.dataset) return;
+          const rect = ui.viewport.getBoundingClientRect();
+          const width = ui.image.naturalWidth, height = ui.image.naturalHeight;
+          if (!width || !height) return;
+          const scale = Math.min(rect.width / width, rect.height / height) * state.zoom;
+          const cssWidth = width * scale, cssHeight = height * scale;
+          ui.artwork.style.width = `${cssWidth}px`;
+          ui.artwork.style.height = `${cssHeight}px`;
+          ui.artwork.style.flex = 'none';
+          ui.artwork.style.position = 'absolute';
+          ui.artwork.style.left = `${(rect.width - cssWidth) / 2}px`;
+          ui.artwork.style.top = `${(rect.height - cssHeight) / 2}px`;
+          ui.canvas.width = width;
+          ui.canvas.height = height;
+          ui.image.style.objectFit = 'fill';
+          ui.skeletonImage.style.objectFit = 'fill';
+          ui.mask.style.objectFit = 'fill';
+          drawOverlay();
+          ui.zoomLabel.textContent = `${Math.round(state.zoom * 100)}%`;
+        }
+
+        function drawOverlay() {
+          if (!ctx || !ui.canvas.width || !ui.canvas.height) return;
+          const width = ui.canvas.width, height = ui.canvas.height;
+          ctx.clearRect(0, 0, width, height);
+          if (ui.skeletonToggle.checked && state.skeleton.length && !ui.skeletonImage.naturalWidth) {
+            ctx.beginPath();
+            for (const point of state.skeleton) {
+              const x = Array.isArray(point) ? point[0] : point.x;
+              const y = Array.isArray(point) ? point[1] : point.y;
+              ctx.rect(x, y, 1.4, 1.4);
+            }
+            ctx.fillStyle = 'rgba(214, 229, 222, 0.48)';
+            ctx.fill();
+          }
+          const max = Math.max(0, state.route.length - 1);
+          const current = Math.round(max * state.progress / 100);
+          if (ui.routeToggle.checked && state.route.length > 1) {
+            ctx.beginPath();
+            state.route.forEach((point, index) => {
+              const x = Array.isArray(point) ? point[0] : point.x;
+              const y = Array.isArray(point) ? point[1] : point.y;
+              if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            });
+            ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+            ctx.lineWidth = Math.max(1.5, width / 1800);
+            ctx.strokeStyle = 'rgba(255, 214, 77, .48)';
+            ctx.stroke();
+            ctx.beginPath();
+            state.route.slice(0, current + 1).forEach((point, index) => {
+              const x = Array.isArray(point) ? point[0] : point.x;
+              const y = Array.isArray(point) ? point[1] : point.y;
+              if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            });
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            ctx.lineWidth = Math.max(2.5, width / 1100);
+            ctx.strokeStyle = '#ffd548';
+            ctx.shadowColor = 'rgba(23, 24, 17, .8)';
+            ctx.shadowBlur = Math.max(3, width / 480);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+            const point = state.route[current];
+            if (point) {
+              const x = Array.isArray(point) ? point[0] : point.x;
+              const y = Array.isArray(point) ? point[1] : point.y;
+              ctx.beginPath(); ctx.arc(x, y, Math.max(5, width / 380), 0, Math.PI * 2);
+              ctx.fillStyle = '#fff'; ctx.fill();
+              ctx.beginPath(); ctx.arc(x, y, Math.max(3, width / 650), 0, Math.PI * 2);
+              ctx.fillStyle = '#ec674e'; ctx.fill();
+            }
+          }
+          const skeletonReady = ui.skeletonImage.naturalWidth > 0 && ui.skeletonImage.dataset.readySource === ui.skeletonImage.src;
+          ui.skeletonImage.style.opacity = ui.skeletonToggle.checked && skeletonReady ? '.72' : '0';
+          if (ui.maskToggle.checked) ui.mask.style.opacity = '.34'; else ui.mask.style.opacity = '0';
+          const point = state.route[Math.round(max * state.progress / 100)];
+          if (point) {
+            const x = Array.isArray(point) ? point[0] : point.x;
+            const y = Array.isArray(point) ? point[1] : point.y;
+            el('coordinateReadout').textContent = `X ${Math.round(x).toLocaleString()} · Y ${Math.round(y).toLocaleString()}`;
+          } else el('coordinateReadout').textContent = '未关联路径';
+        }
+
+        function setProgress(value) {
+          state.progress = Math.max(0, Math.min(100, Math.round(value)));
+          ui.slider.value = String(state.progress);
+          const index = state.route.length ? Math.round((state.route.length - 1) * state.progress / 100) : 0;
+          const recordIndex = state.records.length ? Math.min(state.records.length - 1, Math.floor(state.progress / 100 * state.records.length)) : -1;
+          el('progressText').innerHTML = `<strong>${state.progress}%</strong> · ${state.progress === 0 ? '起点' : state.progress === 100 ? '终点' : `路径点 ${index.toLocaleString()}`}`;
+          el('motionText').textContent = recordIndex >= 0 ? `动作 ${recordIndex + 1} / ${state.records.length}` : '预览模式，不控制扫描设备';
+          [...ui.segments.children].forEach((bar, i) => bar.className = i < recordIndex ? 'done' : i === recordIndex ? 'current' : '');
+          [...ui.runList.children].forEach((row, i) => row.classList.toggle('current', i === recordIndex));
+          drawOverlay();
+        }
+
+        function normalizedData(dataset, routeData, motionData, skeletonData = {}) {
+          const route = dataset.routeType === 'cutting'
+            ? (routeData.cutting_points || [])
+            : (routeData.longest_path_points || []);
+          const skeleton = dataset.routeType === 'longest' ? [] : (skeletonData.skeleton_points || []);
+          return { route, skeleton, records: motionData.records || [], motionData };
+        }
+
+        function renderRecords() {
+          const records = state.records;
+          ui.runList.replaceChildren();
+          records.slice(0, 120).forEach((record, index) => {
+            const direction = String(record.direction || 'SCAN').replaceAll('_', ' ');
+            const row = document.createElement('div'); row.className = 'run-row';
+            const label = document.createElement('div'); label.className = 'run-label';
+            const badge = document.createElement('span'); badge.className = 'run-index'; badge.textContent = String(index + 1).padStart(2, '0');
+            const directionText = document.createElement('span'); directionText.className = 'run-direction'; directionText.textContent = direction;
+            const value = document.createElement('span'); value.className = 'run-value'; value.textContent = `${Number(record.steps || 0).toLocaleString()} steps`;
+            label.append(badge, directionText); row.append(label, value); ui.runList.append(row);
+          });
+          if (!records.length) ui.runList.textContent = '此样例没有扫描动作记录。';
+          el('recordBadge').textContent = `${records.length} 条`;
+          el('recordCountValue').textContent = String(records.length);
+          el('timelineCount').textContent = records.length ? `${records.length} 条已保存动作` : '未找到扫描动作';
+          ui.segments.replaceChildren(...Array.from({length: Math.min(records.length, 40)}, () => document.createElement('i')));
+        }
+
+        async function loadDataset(entry) {
+          if (!entry) return;
+          stopPlayback();
+          state.userImage = null;
+          state.zoom = 1;
+          state.progress = 0;
+          state.dataset = entry;
+          const dataset = state.dataset;
+          ui.placeholder.classList.add('visible');
+          el('placeholderTitle').textContent = '底图加载中';
+          el('placeholderText').textContent = '正在读取本地扫描样例。';
+          ui.image.style.visibility = 'hidden';
+          ui.mask.style.opacity = '0';
+          ui.skeletonImage.style.opacity = '0';
+          ui.skeletonImage.dataset.readySource = '';
+          ui.maskToggle.disabled = false;
+          ui.skeletonToggle.disabled = false;
+          el('datasetCaption').textContent = `${dataset.name} · 语义分割结果`;
+          el('footerState').textContent = '正在读取本地扫描样例';
+          ui.image.src = dataset.artifacts.image || '';
+          ui.mask.src = dataset.artifacts.mask || '';
+          ui.skeletonImage.src = dataset.artifacts.skeleton || '';
+          try {
+            const [routeResponse, motionResponse, skeletonResponse] = await Promise.all([
+              fetch(dataset.artifacts.route), fetch(`/api/datasets/${encodeURIComponent(dataset.id)}/motion`), dataset.artifacts.skeleton_data ? fetch(dataset.artifacts.skeleton_data) : Promise.resolve(null)
+            ]);
+            if (!routeResponse.ok || !motionResponse.ok) throw new Error('样例坐标或扫描记录不可用');
+            const [routeData, motionData, skeletonData] = await Promise.all([
+              routeResponse.json(), motionResponse.json(), skeletonResponse?.ok ? skeletonResponse.json() : Promise.resolve({})
+            ]);
+            await ui.image.decode();
+            const parsed = normalizedData(dataset, routeData, motionData, skeletonData);
+            state.route = parsed.route;
+            state.skeleton = parsed.skeleton;
+            state.records = parsed.records;
+            const info = motionData.skeleton_info || {};
+            const imageWidth = ui.image.naturalWidth;
+            const imageHeight = ui.image.naturalHeight;
+            if (!imageWidth || !imageHeight) throw new Error('底图文件无法解码');
+            el('resolutionValue').textContent = `${imageWidth.toLocaleString()} × ${imageHeight.toLocaleString()}`;
+            el('pathCountValue').textContent = state.route.length.toLocaleString();
+            el('skeletonValue').textContent = Number(info.total_pixels || 0).toLocaleString();
+            ui.slider.max = '100';
+            renderRecords();
+            ui.image.style.visibility = 'visible';
+            ui.placeholder.classList.remove('visible');
+            el('footerState').textContent = '已加载本地扫描样例';
+            fitMap();
+            setProgress(0);
+          } catch (error) {
+            state.route = []; state.records = []; state.skeleton = [];
+            ui.placeholder.classList.add('visible');
+            el('placeholderTitle').textContent = '样例读取失败';
+            el('placeholderText').textContent = `${error.message}。请确认从项目目录运行本地服务，或导入一张图像。`;
+            el('footerState').textContent = '样例读取失败';
+            el('resolutionValue').textContent = '—'; el('pathCountValue').textContent = '—'; el('skeletonValue').textContent = '—';
+            renderRecords(); drawOverlay();
+          }
+        }
+
+        function stopPlayback() {
+          state.playing = false;
+          clearInterval(state.timer);
+          state.timer = null;
+          el('playButton').setAttribute('aria-label', '播放路径预览');
+          el('playButton').title = '播放路径预览';
+          el('playButton').innerHTML = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 9 6-9 6V4Z" fill="currentColor"/></svg>';
+        }
+        function startPlayback() {
+          if (state.playing) { stopPlayback(); return; }
+          if (!state.route.length) { showToast('当前没有可预览的路径坐标。'); return; }
+          if (state.progress >= 100) setProgress(0);
+          state.playing = true;
+          el('playButton').setAttribute('aria-label', '暂停路径预览');
+          el('playButton').title = '暂停路径预览';
+          el('playButton').innerHTML = '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h4v12H5zm7 0h4v12h-4z"/></svg>';
+          state.timer = setInterval(() => {
+            if (state.progress >= 100) { stopPlayback(); return; }
+            setProgress(Math.min(100, state.progress + 1));
+          }, 75);
+        }
+
+        function download(filename, content, type) {
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(new Blob([content], {type}));
+          link.download = filename; link.click();
+          setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        }
+        function exportCanvas() {
+          if (!ui.image.complete || !ui.image.naturalWidth) {
+            showToast('当前底图尚未就绪。'); return;
+          }
+          const output = document.createElement('canvas');
+          output.width = ui.image.naturalWidth; output.height = ui.image.naturalHeight;
+          const out = output.getContext('2d');
+          out.drawImage(ui.image, 0, 0);
+          if (ui.maskToggle.checked && ui.mask.complete) { out.globalAlpha = .34; out.drawImage(ui.mask, 0, 0, output.width, output.height); out.globalAlpha = 1; }
+          const skeletonReady = ui.skeletonImage.naturalWidth > 0 && ui.skeletonImage.dataset.readySource === ui.skeletonImage.src;
+          if (ui.skeletonToggle.checked && skeletonReady) { out.globalCompositeOperation = 'screen'; out.globalAlpha = .72; out.drawImage(ui.skeletonImage, 0, 0, output.width, output.height); out.globalAlpha = 1; out.globalCompositeOperation = 'source-over'; }
+          if (ui.routeToggle.checked || (ui.skeletonToggle.checked && !skeletonReady)) out.drawImage(ui.canvas, 0, 0);
+          output.toBlob(blob => {
+            if (!blob) { showToast('视图导出失败。'); return; }
+            const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = state.userImage ? 'coresegment-custom-map.png' : `coresegment-${ui.select.value}.png`; link.click();
+            setTimeout(() => URL.revokeObjectURL(link.href), 1000); showToast('复核视图已导出。');
+          }, 'image/png');
+        }
+
+        async function loadCatalog() {
+          try {
+            const response = await fetch('/api/datasets');
+            if (!response.ok) throw new Error('扫描样例目录不可用');
+            const {items} = await response.json();
+            ui.select.replaceChildren(...items.map(dataset => {
+              const option = document.createElement('option');
+              option.value = dataset.id;
+              option.textContent = dataset.name;
+              return option;
+            }));
+            if (!items.length) throw new Error('未找到可用扫描样例');
+            const selected = items.find(item => item.id === 'toupview-test4') || items[0];
+            ui.select.value = selected.id;
+            ui.select.addEventListener('change', () => loadDataset(items.find(item => item.id === ui.select.value)));
+            await loadDataset(selected);
+          } catch (error) {
+            el('footerState').textContent = '后端服务连接失败';
+            el('placeholderTitle').textContent = '样例读取失败';
+            el('placeholderText').textContent = `${error.message}。请确认 Flask 服务已启动。`;
+            ui.placeholder.classList.add('visible');
+          }
+        }
+        [ui.routeToggle, ui.skeletonToggle, ui.maskToggle].forEach(control => control.addEventListener('change', drawOverlay));
+        ui.slider.addEventListener('input', () => { stopPlayback(); setProgress(Number(ui.slider.value)); });
+        el('playButton').addEventListener('click', startPlayback);
+        el('stepBack').addEventListener('click', () => { stopPlayback(); setProgress(state.progress === 0 ? 0 : Math.max(0, state.progress - 2)); });
+        el('stepForward').addEventListener('click', () => { stopPlayback(); setProgress(state.progress === 100 ? 100 : Math.min(100, state.progress + 2)); });
+        el('zoomIn').addEventListener('click', () => { state.zoom = Math.min(2, +(state.zoom + .1).toFixed(2)); fitMap(); });
+        el('zoomOut').addEventListener('click', () => { state.zoom = Math.max(.6, +(state.zoom - .1).toFixed(2)); fitMap(); });
+        el('fitButton').addEventListener('click', () => { state.zoom = 1; fitMap(); });
+        el('exportImage').addEventListener('click', exportCanvas);
+        el('downloadCoords').addEventListener('click', () => {
+          if (!state.route.length) { showToast('当前没有可导出的路径坐标。'); return; }
+          download(`coresegment-${ui.select.value}-path.json`, JSON.stringify({source: state.dataset.name, coordinate_unit: 'pixel', origin: 'top-left', points: state.route}, null, 2), 'application/json');
+          showToast('路径坐标 JSON 已导出。');
+        });
+        el('exportLog').addEventListener('click', () => {
+          if (!state.records.length) { showToast('当前样例没有扫描动作记录。'); return; }
+          download(`coresegment-${ui.select.value}-motion.json`, JSON.stringify({source: state.dataset.name, records: state.records}, null, 2), 'application/json');
+          showToast('扫描动作 JSON 已导出。');
+        });
+        const fileInput = el('fileInput');
+        el('importButton').addEventListener('click', () => fileInput.click());
+        el('placeholderImport').addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', () => {
+          const file = fileInput.files?.[0]; if (!file) return;
+          if (!file.type.startsWith('image/')) { showToast('请选择 PNG、JPEG 或 WebP 图像。'); fileInput.value = ''; return; }
+          const reader = new FileReader();
+          reader.onerror = () => showToast('图像读取失败，请重新选择文件。');
+          reader.onload = () => {
+            state.userImage = String(reader.result); stopPlayback(); state.route = []; state.skeleton = []; state.records = [];
+            ui.image.onload = () => { ui.placeholder.classList.remove('visible'); ui.image.style.visibility = 'visible'; el('resolutionValue').textContent = `${ui.image.naturalWidth.toLocaleString()} × ${ui.image.naturalHeight.toLocaleString()}`; ui.canvas.width = ui.image.naturalWidth; ui.canvas.height = ui.image.naturalHeight; ui.mask.style.opacity = '0'; ui.skeletonImage.style.opacity = '0'; ui.maskToggle.checked = false; ui.skeletonToggle.checked = false; ui.maskToggle.disabled = true; ui.skeletonToggle.disabled = true; state.zoom = 1; fitMap(); drawOverlay(); };
+            ui.image.src = state.userImage; ui.mask.style.opacity = '0'; ui.skeletonImage.style.opacity = '0';
+            el('datasetCaption').textContent = `${file.name} · 自定义底图`;
+            el('placeholderTitle').textContent = '底图读取失败'; el('placeholderText').textContent = '请选择有效的 PNG、JPEG 或 WebP 图像。';
+            el('resolutionValue').textContent = '读取中'; el('pathCountValue').textContent = '未关联'; el('skeletonValue').textContent = '未关联';
+            renderRecords(); el('footerState').textContent = '自定义底图 · 未关联扫描路径';
+            showToast('底图已载入；扫描路径需要匹配的坐标文件。');
+          };
+          reader.readAsDataURL(file);
+        });
+        ui.canvas.addEventListener('pointerdown', event => {
+          if (!state.route.length) return;
+          const bounds = ui.canvas.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width * ui.canvas.width;
+          const y = (event.clientY - bounds.top) / bounds.height * ui.canvas.height;
+          let bestIndex = 0, bestDistance = Infinity;
+          const stride = Math.max(1, Math.floor(state.route.length / 3500));
+          for (let i = 0; i < state.route.length; i += stride) {
+            const point = state.route[i]; const dx = (Array.isArray(point) ? point[0] : point.x) - x; const dy = (Array.isArray(point) ? point[1] : point.y) - y;
+            const distance = dx * dx + dy * dy;
+            if (distance < bestDistance) { bestDistance = distance; bestIndex = i; }
+          }
+          stopPlayback(); setProgress(bestIndex / Math.max(1, state.route.length - 1) * 100);
+        });
+        ui.image.addEventListener('load', fitMap);
+        ui.skeletonImage.addEventListener('load', () => { ui.skeletonImage.dataset.readySource = ui.skeletonImage.src; drawOverlay(); });
+        ui.skeletonImage.addEventListener('error', () => { ui.skeletonImage.dataset.readySource = ''; drawOverlay(); });
+        ui.mask.addEventListener('error', () => { ui.maskToggle.checked = false; ui.maskToggle.disabled = true; });
+        ui.image.addEventListener('error', () => {
+          if (!state.userImage) return;
+          ui.placeholder.classList.add('visible'); el('placeholderTitle').textContent = '底图无法打开';
+          el('placeholderText').textContent = '请重新选择有效的 PNG、JPEG 或 WebP 图像。';
+          el('footerState').textContent = '自定义底图读取失败';
+        });
+        window.addEventListener('resize', fitMap);
+        document.querySelectorAll('[data-nav]').forEach(button => button.addEventListener('click', () => {
+          const section = button.dataset.nav;
+          if (section === 'segmentation') { ui.maskToggle.checked = !ui.maskToggle.checked; drawOverlay(); showToast(ui.maskToggle.checked ? '分割类别图层已显示。' : '分割类别图层已隐藏。'); }
+          else if (section === 'records') { const panel = el('recordsPanel'); panel.tabIndex = -1; panel.scrollIntoView({behavior: 'smooth', block: 'nearest'}); panel.focus({preventScroll: true}); }
+          else document.querySelector('.workspace').scrollIntoView({behavior: 'smooth', block: 'start'});
+        }));
+        loadCatalog();
+      })();
+    </script>
+  </body>
+</html>

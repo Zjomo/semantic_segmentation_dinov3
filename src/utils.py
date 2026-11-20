@@ -3,9 +3,12 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torchvision.ops import nms
+import matplotlib
+matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 
 # --------- conversion: outputs -> semantic & panoptic maps -----------
+# 将 逻辑分数 > 语义地图
 def outputs_to_maps(semantic_logits, image_size):
     """
     Convert model outputs at full resolution to semantic + instance maps.
@@ -33,6 +36,7 @@ def outputs_to_maps(semantic_logits, image_size):
     return semantic_pred
 
 
+# 将语义分割结果彩色化，叠加到原图，并标注类型名称
 def generate_segmentation_overlay(
     image,
     semantic_map,
@@ -60,7 +64,7 @@ def generate_segmentation_overlay(
         out_sem (np.ndarray): H x W x 3 uint8 image with overlay and optional labels
     """
 
-    # Normalize image to uint8
+    # 类型标准化 Normalize image to uint8
     img = np.array(image)
     if img.dtype in (np.float32, np.float64):
         if img.max() <= 1.0:
@@ -92,6 +96,7 @@ def generate_segmentation_overlay(
 
     for cls in unique_c:
         if cls < 0 or cls == background_index:
+            print(cls)
             continue
         mask = (semantic_map == int(cls))
         if mask.sum() == 0:
@@ -124,6 +129,7 @@ def generate_segmentation_overlay(
     return out_sem
 
 
+# 将原图和分割结果并排显示，进行对比
 def visualize_maps(image, semantic_map, class_names=None, alpha=0.6, figsize=(12, 8),
                    draw_semantic_labels=True, semantic_label_fontsize=10, background_index=0, seed=42):
     overlay_img = generate_segmentation_overlay(

@@ -1,0 +1,945 @@
+============================================================
+驱动器运动总结
+============================================================
+  [  1]    UP     100 steps
+  [  2]    UP     100 steps
+  [  3]    UP     100 steps
+  [  4]    UP     100 steps
+  [  5]    UP     100 steps
+  [  6]    UP     100 steps
+  [  7]    UP     100 steps
+  [  8]    UP     100 steps
+  [  9]    UP     100 steps
+  [ 10]    UP     100 steps
+  [ 11]    UP     100 steps
+  [ 12]    UP     100 steps
+  [ 13]    UP     100 steps
+  [ 14]    UP     100 steps
+  [ 15]    UP     100 steps
+  [ 16]    UP     100 steps
+  [ 17]    UP     100 steps
+  [ 18]    UP     100 steps
+  [ 19]    UP     100 steps
+  [ 20]    UP     100 steps
+  [ 21]    UP     100 steps
+  [ 22]    UP     100 steps
+  [ 23]    UP     100 steps
+  [ 24]    UP     100 steps
+  [ 25]    UP     100 steps
+  [ 26]    UP     100 steps
+  [ 27]    UP     100 steps
+  [ 28]    UP     100 steps
+  [ 29]    UP     100 steps
+  [ 30]    UP     100 steps
+  [ 31]    UP     100 steps
+  [ 32]    UP     100 steps
+  [ 33]    UP     100 steps
+  [ 34]    UP     100 steps
+  [ 35]    UP     100 steps
+  [ 36]    UP     100 steps
+  [ 37]  LEFT     100 steps
+  [ 38]  LEFT     100 steps
+  [ 39]  LEFT     100 steps
+  [ 40]  LEFT     100 steps
+  [ 41]  LEFT     100 steps
+  [ 42]  LEFT     100 steps
+  [ 43]  LEFT     100 steps
+  [ 44]  LEFT     100 steps
+  [ 45]  LEFT     100 steps
+  [ 46]  LEFT     100 steps
+  [ 47]  LEFT     100 steps
+  [ 48]  LEFT     100 steps
+  [ 49]  LEFT     100 steps
+  [ 50]  LEFT     100 steps
+  [ 51]  LEFT     100 steps
+  [ 52]  LEFT     100 steps
+  [ 53]  LEFT     100 steps
+  [ 54]  LEFT     100 steps
+  [ 55]  LEFT     100 steps
+  [ 56]  LEFT     100 steps
+  [ 57]  LEFT     100 steps
+  [ 58]  LEFT     100 steps
+  [ 59]  LEFT     100 steps
+  [ 60]  LEFT     100 steps
+  [ 61]  LEFT     100 steps
+  [ 62]  LEFT     100 steps
+  [ 63]  LEFT     100 steps
+  [ 64]  LEFT     100 steps
+  [ 65]  LEFT     100 steps
+  [ 66]  LEFT     100 steps
+  [ 67]  LEFT     100 steps
+  [ 68]  LEFT     100 steps
+  [ 69]  LEFT     100 steps
+  [ 70]  LEFT     100 steps
+  [ 71]  LEFT     100 steps
+  [ 72]  LEFT     100 steps
+  [ 73]  LEFT     100 steps
+  [ 74]  LEFT     100 steps
+  [ 75]  LEFT     100 steps
+  [ 76]  LEFT     100 steps
+  [ 77]  LEFT     100 steps
+  [ 78] RIGHT     100 steps
+  [ 79] RIGHT     100 steps
+  [ 80] RIGHT     100 steps
+  [ 81] RIGHT     100 steps
+  [ 82] RIGHT     100 steps
+  [ 83] RIGHT     100 steps
+  [ 84] RIGHT     100 steps
+  [ 85] RIGHT     100 steps
+  [ 86] RIGHT     100 steps
+  [ 87] RIGHT     100 steps
+  [ 88] RIGHT     100 steps
+  [ 89] RIGHT     100 steps
+  [ 90] RIGHT     100 steps
+  [ 91] RIGHT     100 steps
+  [ 92] RIGHT     100 steps
+  [ 93] RIGHT     100 steps
+  [ 94] RIGHT     100 steps
+  [ 95] RIGHT     100 steps
+  [ 96] RIGHT     100 steps
+  [ 97] RIGHT     100 steps
+  [ 98] RIGHT     100 steps
+  [ 99] RIGHT     100 steps
+  [100] RIGHT     100 steps
+  [101] RIGHT     100 steps
+  [102] RIGHT     100 steps
+  [103] RIGHT     100 steps
+  [104] RIGHT     100 steps
+  [105] RIGHT     100 steps
+  [106] RIGHT     100 steps
+  [107] RIGHT     100 steps
+  [108] RIGHT     100 steps
+  [109] RIGHT     100 steps
+  [110] RIGHT     100 steps
+  [111] RIGHT     100 steps
+  [112] RIGHT     100 steps
+  [113] RIGHT     100 steps
+  [114] RIGHT     100 steps
+  [115] RIGHT     100 steps
+  [116] RIGHT     100 steps
+  [117] RIGHT     100 steps
+  [118] RIGHT     100 steps
+  [119] RIGHT     100 steps
+  [120] RIGHT     100 steps
+  [121] RIGHT     100 steps
+  [122] RIGHT     100 steps
+  [123] RIGHT     100 steps
+  [124] RIGHT     100 steps
+  [125] RIGHT     100 steps
+  [126] RIGHT     100 steps
+  [127] RIGHT     100 steps
+  [128] RIGHT     100 steps
+  [129] RIGHT     100 steps
+  [130] RIGHT     100 steps
+  [131] RIGHT     100 steps
+  [132] RIGHT     100 steps
+  [133] RIGHT     100 steps
+  [134] RIGHT     100 steps
+  [135] RIGHT     100 steps
+  [136] RIGHT     100 steps
+  [137] RIGHT     100 steps
+  [138] RIGHT     100 steps
+  [139] RIGHT     100 steps
+  [140] RIGHT     100 steps
+  [141] RIGHT     100 steps
+  [142] RIGHT     100 steps
+  [143] RIGHT     100 steps
+  [144] RIGHT     100 steps
+  [145] RIGHT     100 steps
+  [146] RIGHT     100 steps
+  [147] RIGHT     100 steps
+  [148] RIGHT     100 steps
+  [149] RIGHT     100 steps
+  [150]  DOWN     100 steps
+  [151]  DOWN     100 steps
+  [152]  DOWN     100 steps
+  [153]  DOWN     100 steps
+  [154]  DOWN     100 steps
+  [155]  DOWN     100 steps
+  [156]  DOWN      20 steps
+  [157]  LEFT     100 steps
+  [158]  LEFT     100 steps
+  [159]  LEFT     100 steps
+  [160]  LEFT     100 steps
+  [161]  LEFT     100 steps
+  [162]  LEFT     100 steps
+  [163]  LEFT     100 steps
+  [164]  LEFT     100 steps
+  [165]  LEFT     100 steps
+  [166]  LEFT     100 steps
+  [167]  LEFT     100 steps
+  [168]  LEFT     100 steps
+  [169]  LEFT     100 steps
+  [170]  LEFT     100 steps
+  [171]  LEFT     100 steps
+  [172]  LEFT     100 steps
+  [173]  LEFT     100 steps
+  [174]  LEFT     100 steps
+  [175]  LEFT     100 steps
+  [176]  LEFT     100 steps
+  [177]  LEFT     100 steps
+  [178]  LEFT     100 steps
+  [179]  LEFT     100 steps
+  [180]  LEFT     100 steps
+  [181]  LEFT     100 steps
+  [182]  LEFT     100 steps
+  [183]  LEFT     100 steps
+  [184]  LEFT     100 steps
+  [185]  LEFT     100 steps
+  [186]  LEFT     100 steps
+  [187]  LEFT     100 steps
+  [188]  LEFT     100 steps
+  [189]  LEFT     100 steps
+  [190]  LEFT     100 steps
+  [191]  LEFT     100 steps
+  [192]  LEFT     100 steps
+  [193]  LEFT     100 steps
+  [194]  LEFT     100 steps
+  [195]  LEFT     100 steps
+  [196]  LEFT     100 steps
+  [197]  LEFT     100 steps
+  [198]  LEFT     100 steps
+  [199]  LEFT     100 steps
+  [200]  LEFT     100 steps
+  [201]  LEFT     100 steps
+  [202]  LEFT     100 steps
+  [203]  LEFT     100 steps
+  [204]  LEFT     100 steps
+  [205]  LEFT     100 steps
+  [206]  LEFT     100 steps
+  [207]  LEFT     100 steps
+  [208]  LEFT     100 steps
+  [209]  LEFT     100 steps
+  [210]  LEFT     100 steps
+  [211]  LEFT     100 steps
+  [212]  LEFT     100 steps
+  [213]  LEFT     100 steps
+  [214]  LEFT     100 steps
+  [215]  LEFT     100 steps
+  [216]  LEFT     100 steps
+  [217]  LEFT     100 steps
+  [218]  LEFT     100 steps
+  [219]  LEFT     100 steps
+  [220]  LEFT     100 steps
+  [221]  LEFT     100 steps
+  [222]  LEFT     100 steps
+  [223]  LEFT     100 steps
+  [224]  LEFT     100 steps
+  [225]  LEFT     100 steps
+  [226]  LEFT     100 steps
+  [227]  LEFT     100 steps
+  [228]  LEFT     100 steps
+  [229]  DOWN     100 steps
+  [230]  DOWN     100 steps
+  [231]  DOWN     100 steps
+  [232]  DOWN     100 steps
+  [233]  DOWN     100 steps
+  [234]  DOWN     100 steps
+  [235]  DOWN      20 steps
+  [236] RIGHT     100 steps
+  [237] RIGHT     100 steps
+  [238] RIGHT     100 steps
+  [239] RIGHT     100 steps
+  [240] RIGHT     100 steps
+  [241] RIGHT     100 steps
+  [242] RIGHT     100 steps
+  [243] RIGHT     100 steps
+  [244] RIGHT     100 steps
+  [245] RIGHT     100 steps
+  [246] RIGHT     100 steps
+  [247] RIGHT     100 steps
+  [248] RIGHT     100 steps
+  [249] RIGHT     100 steps
+  [250] RIGHT     100 steps
+  [251] RIGHT     100 steps
+  [252] RIGHT     100 steps
+  [253] RIGHT     100 steps
+  [254] RIGHT     100 steps
+  [255] RIGHT     100 steps
+  [256] RIGHT     100 steps
+  [257] RIGHT     100 steps
+  [258] RIGHT     100 steps
+  [259] RIGHT     100 steps
+  [260] RIGHT     100 steps
+  [261] RIGHT     100 steps
+  [262] RIGHT     100 steps
+  [263] RIGHT     100 steps
+  [264] RIGHT     100 steps
+  [265] RIGHT     100 steps
+  [266] RIGHT     100 steps
+  [267] RIGHT     100 steps
+  [268] RIGHT     100 steps
+  [269] RIGHT     100 steps
+  [270] RIGHT     100 steps
+  [271] RIGHT     100 steps
+  [272] RIGHT     100 steps
+  [273] RIGHT     100 steps
+  [274] RIGHT     100 steps
+  [275] RIGHT     100 steps
+  [276] RIGHT     100 steps
+  [277] RIGHT     100 steps
+  [278] RIGHT     100 steps
+  [279] RIGHT     100 steps
+  [280] RIGHT     100 steps
+  [281] RIGHT     100 steps
+  [282] RIGHT     100 steps
+  [283] RIGHT     100 steps
+  [284] RIGHT     100 steps
+  [285] RIGHT     100 steps
+  [286] RIGHT     100 steps
+  [287] RIGHT     100 steps
+  [288] RIGHT     100 steps
+  [289] RIGHT     100 steps
+  [290] RIGHT     100 steps
+  [291] RIGHT     100 steps
+  [292] RIGHT     100 steps
+  [293] RIGHT     100 steps
+  [294] RIGHT     100 steps
+  [295] RIGHT     100 steps
+  [296] RIGHT     100 steps
+  [297] RIGHT     100 steps
+  [298] RIGHT     100 steps
+  [299] RIGHT     100 steps
+  [300] RIGHT     100 steps
+  [301] RIGHT     100 steps
+  [302] RIGHT     100 steps
+  [303] RIGHT     100 steps
+  [304] RIGHT     100 steps
+  [305] RIGHT     100 steps
+  [306] RIGHT     100 steps
+  [307]  DOWN     100 steps
+  [308]  DOWN     100 steps
+  [309]  DOWN     100 steps
+  [310]  DOWN     100 steps
+  [311]  DOWN     100 steps
+  [312]  DOWN     100 steps
+  [313]  DOWN      20 steps
+  [314]  LEFT     100 steps
+  [315]  LEFT     100 steps
+  [316]  LEFT     100 steps
+  [317]  LEFT     100 steps
+  [318]  LEFT     100 steps
+  [319]  LEFT     100 steps
+  [320]  LEFT     100 steps
+  [321]  LEFT     100 steps
+  [322]  LEFT     100 steps
+  [323]  LEFT     100 steps
+  [324]  LEFT     100 steps
+  [325]  LEFT     100 steps
+  [326]  LEFT     100 steps
+  [327]  LEFT     100 steps
+  [328]  LEFT     100 steps
+  [329]  LEFT     100 steps
+  [330]  LEFT     100 steps
+  [331]  LEFT     100 steps
+  [332]  LEFT     100 steps
+  [333]  LEFT     100 steps
+  [334]  LEFT     100 steps
+  [335]  LEFT     100 steps
+  [336]  LEFT     100 steps
+  [337]  LEFT     100 steps
+  [338]  LEFT     100 steps
+  [339]  LEFT     100 steps
+  [340]  LEFT     100 steps
+  [341]  LEFT     100 steps
+  [342]  LEFT     100 steps
+  [343]  LEFT     100 steps
+  [344]  LEFT     100 steps
+  [345]  LEFT     100 steps
+  [346]  LEFT     100 steps
+  [347]  LEFT     100 steps
+  [348]  LEFT     100 steps
+  [349]  LEFT     100 steps
+  [350]  LEFT     100 steps
+  [351]  LEFT     100 steps
+  [352]  LEFT     100 steps
+  [353]  LEFT     100 steps
+  [354]  LEFT     100 steps
+  [355]  LEFT     100 steps
+  [356]  LEFT     100 steps
+  [357]  LEFT     100 steps
+  [358]  LEFT     100 steps
+  [359]  LEFT     100 steps
+  [360]  LEFT     100 steps
+  [361]  LEFT     100 steps
+  [362]  LEFT     100 steps
+  [363]  LEFT     100 steps
+  [364]  LEFT     100 steps
+  [365]  LEFT     100 steps
+  [366]  LEFT     100 steps
+  [367]  LEFT     100 steps
+  [368]  LEFT     100 steps
+  [369]  LEFT     100 steps
+  [370]  LEFT     100 steps
+  [371]  LEFT     100 steps
+  [372]  LEFT     100 steps
+  [373]  LEFT     100 steps
+  [374]  LEFT     100 steps
+  [375]  LEFT     100 steps
+  [376]  LEFT     100 steps
+  [377]  LEFT     100 steps
+  [378]  LEFT     100 steps
+  [379]  LEFT     100 steps
+  [380]  LEFT     100 steps
+  [381]  LEFT     100 steps
+  [382]  LEFT     100 steps
+  [383]  LEFT     100 steps
+  [384]  LEFT     100 steps
+  [385]  DOWN     100 steps
+  [386]  DOWN     100 steps
+  [387]  DOWN     100 steps
+  [388]  DOWN     100 steps
+  [389]  DOWN     100 steps
+  [390]  DOWN     100 steps
+  [391]  DOWN      20 steps
+  [392] RIGHT     100 steps
+  [393] RIGHT     100 steps
+  [394] RIGHT     100 steps
+  [395] RIGHT     100 steps
+  [396] RIGHT     100 steps
+  [397] RIGHT     100 steps
+  [398] RIGHT     100 steps
+  [399] RIGHT     100 steps
+  [400] RIGHT     100 steps
+  [401] RIGHT     100 steps
+  [402] RIGHT     100 steps
+  [403] RIGHT     100 steps
+  [404] RIGHT     100 steps
+  [405] RIGHT     100 steps
+  [406] RIGHT     100 steps
+  [407] RIGHT     100 steps
+  [408] RIGHT     100 steps
+  [409] RIGHT     100 steps
+  [410] RIGHT     100 steps
+  [411] RIGHT     100 steps
+  [412] RIGHT     100 steps
+  [413] RIGHT     100 steps
+  [414] RIGHT     100 steps
+  [415] RIGHT     100 steps
+  [416] RIGHT     100 steps
+  [417] RIGHT     100 steps
+  [418] RIGHT     100 steps
+  [419] RIGHT     100 steps
+  [420] RIGHT     100 steps
+  [421] RIGHT     100 steps
+  [422] RIGHT     100 steps
+  [423] RIGHT     100 steps
+  [424] RIGHT     100 steps
+  [425] RIGHT     100 steps
+  [426] RIGHT     100 steps
+  [427] RIGHT     100 steps
+  [428] RIGHT     100 steps
+  [429] RIGHT     100 steps
+  [430] RIGHT     100 steps
+  [431] RIGHT     100 steps
+  [432] RIGHT     100 steps
+  [433] RIGHT     100 steps
+  [434] RIGHT     100 steps
+  [435] RIGHT     100 steps
+  [436] RIGHT     100 steps
+  [437] RIGHT     100 steps
+  [438] RIGHT     100 steps
+  [439] RIGHT     100 steps
+  [440] RIGHT     100 steps
+  [441] RIGHT     100 steps
+  [442] RIGHT     100 steps
+  [443] RIGHT     100 steps
+  [444] RIGHT     100 steps
+  [445] RIGHT     100 steps
+  [446] RIGHT     100 steps
+  [447] RIGHT     100 steps
+  [448] RIGHT     100 steps
+  [449] RIGHT     100 steps
+  [450] RIGHT     100 steps
+  [451] RIGHT     100 steps
+  [452] RIGHT     100 steps
+  [453] RIGHT     100 steps
+  [454] RIGHT     100 steps
+  [455] RIGHT     100 steps
+  [456] RIGHT     100 steps
+  [457] RIGHT     100 steps
+  [458] RIGHT     100 steps
+  [459] RIGHT     100 steps
+  [460] RIGHT     100 steps
+  [461] RIGHT     100 steps
+  [462] RIGHT     100 steps
+  [463]  DOWN     100 steps
+  [464]  DOWN     100 steps
+  [465]  DOWN     100 steps
+  [466]  DOWN     100 steps
+  [467]  DOWN     100 steps
+  [468]  DOWN     100 steps
+  [469]  DOWN      20 steps
+  [470]  LEFT     100 steps
+  [471]  LEFT     100 steps
+  [472]  LEFT     100 steps
+  [473]  LEFT     100 steps
+  [474]  LEFT     100 steps
+  [475]  LEFT     100 steps
+  [476]  LEFT     100 steps
+  [477]  LEFT     100 steps
+  [478]  LEFT     100 steps
+  [479]  LEFT     100 steps
+  [480]  LEFT     100 steps
+  [481]  LEFT     100 steps
+  [482]  LEFT     100 steps
+  [483]  LEFT     100 steps
+  [484]  LEFT     100 steps
+  [485]  LEFT     100 steps
+  [486]  LEFT     100 steps
+  [487]  LEFT     100 steps
+  [488]  LEFT     100 steps
+  [489]  LEFT     100 steps
+  [490]  LEFT     100 steps
+  [491]  LEFT     100 steps
+  [492]  LEFT     100 steps
+  [493]  LEFT     100 steps
+  [494]  LEFT     100 steps
+  [495]  LEFT     100 steps
+  [496]  LEFT     100 steps
+  [497]  LEFT     100 steps
+  [498]  LEFT     100 steps
+  [499]  LEFT     100 steps
+  [500]  LEFT     100 steps
+  [501]  LEFT     100 steps
+  [502]  LEFT     100 steps
+  [503]  LEFT     100 steps
+  [504]  LEFT     100 steps
+  [505]  LEFT     100 steps
+  [506]  LEFT     100 steps
+  [507]  LEFT     100 steps
+  [508]  LEFT     100 steps
+  [509]  LEFT     100 steps
+  [510]  LEFT     100 steps
+  [511]  LEFT     100 steps
+  [512]  LEFT     100 steps
+  [513]  LEFT     100 steps
+  [514]  LEFT     100 steps
+  [515]  LEFT     100 steps
+  [516]  LEFT     100 steps
+  [517]  LEFT     100 steps
+  [518]  LEFT     100 steps
+  [519]  LEFT     100 steps
+  [520]  LEFT     100 steps
+  [521]  LEFT     100 steps
+  [522]  LEFT     100 steps
+  [523]  LEFT     100 steps
+  [524]  LEFT     100 steps
+  [525]  LEFT     100 steps
+  [526]  LEFT     100 steps
+  [527]  LEFT     100 steps
+  [528]  LEFT     100 steps
+  [529]  LEFT     100 steps
+  [530]  LEFT     100 steps
+  [531]  LEFT     100 steps
+  [532]  LEFT     100 steps
+  [533]  LEFT     100 steps
+  [534]  LEFT     100 steps
+  [535]  LEFT     100 steps
+  [536]  LEFT     100 steps
+  [537]  LEFT     100 steps
+  [538]  LEFT     100 steps
+  [539]  LEFT     100 steps
+  [540]  LEFT     100 steps
+  [541]  DOWN     100 steps
+  [542]  DOWN     100 steps
+  [543]  DOWN     100 steps
+  [544]  DOWN     100 steps
+  [545]  DOWN     100 steps
+  [546]  DOWN     100 steps
+  [547]  DOWN      20 steps
+  [548] RIGHT     100 steps
+  [549] RIGHT     100 steps
+  [550] RIGHT     100 steps
+  [551] RIGHT     100 steps
+  [552] RIGHT     100 steps
+  [553] RIGHT     100 steps
+  [554] RIGHT     100 steps
+  [555] RIGHT     100 steps
+  [556] RIGHT     100 steps
+  [557] RIGHT     100 steps
+  [558] RIGHT     100 steps
+  [559] RIGHT     100 steps
+  [560] RIGHT     100 steps
+  [561] RIGHT     100 steps
+  [562] RIGHT     100 steps
+  [563] RIGHT     100 steps
+  [564] RIGHT     100 steps
+  [565] RIGHT     100 steps
+  [566] RIGHT     100 steps
+  [567] RIGHT     100 steps
+  [568] RIGHT     100 steps
+  [569] RIGHT     100 steps
+  [570] RIGHT     100 steps
+  [571] RIGHT     100 steps
+  [572] RIGHT     100 steps
+  [573] RIGHT     100 steps
+  [574] RIGHT     100 steps
+  [575] RIGHT     100 steps
+  [576] RIGHT     100 steps
+  [577] RIGHT     100 steps
+  [578] RIGHT     100 steps
+  [579] RIGHT     100 steps
+  [580] RIGHT     100 steps
+  [581] RIGHT     100 steps
+  [582] RIGHT     100 steps
+  [583] RIGHT     100 steps
+  [584] RIGHT     100 steps
+  [585] RIGHT     100 steps
+  [586] RIGHT     100 steps
+  [587] RIGHT     100 steps
+  [588] RIGHT     100 steps
+  [589] RIGHT     100 steps
+  [590] RIGHT     100 steps
+  [591] RIGHT     100 steps
+  [592] RIGHT     100 steps
+  [593] RIGHT     100 steps
+  [594] RIGHT     100 steps
+  [595] RIGHT     100 steps
+  [596] RIGHT     100 steps
+  [597] RIGHT     100 steps
+  [598] RIGHT     100 steps
+  [599] RIGHT     100 steps
+  [600] RIGHT     100 steps
+  [601] RIGHT     100 steps
+  [602] RIGHT     100 steps
+  [603] RIGHT     100 steps
+  [604] RIGHT     100 steps
+  [605] RIGHT     100 steps
+  [606] RIGHT     100 steps
+  [607] RIGHT     100 steps
+  [608] RIGHT     100 steps
+  [609] RIGHT     100 steps
+  [610] RIGHT     100 steps
+  [611] RIGHT     100 steps
+  [612] RIGHT     100 steps
+  [613] RIGHT     100 steps
+  [614] RIGHT     100 steps
+  [615] RIGHT     100 steps
+  [616] RIGHT     100 steps
+  [617] RIGHT     100 steps
+  [618] RIGHT     100 steps
+  [619]  DOWN     100 steps
+  [620]  DOWN     100 steps
+  [621]  DOWN     100 steps
+  [622]  DOWN     100 steps
+  [623]  DOWN     100 steps
+  [624]  DOWN     100 steps
+  [625]  DOWN      20 steps
+  [626]  LEFT     100 steps
+  [627]  LEFT     100 steps
+  [628]  LEFT     100 steps
+  [629]  LEFT     100 steps
+  [630]  LEFT     100 steps
+  [631]  LEFT     100 steps
+  [632]  LEFT     100 steps
+  [633]  LEFT     100 steps
+  [634]  LEFT     100 steps
+  [635]  LEFT     100 steps
+  [636]  LEFT     100 steps
+  [637]  LEFT     100 steps
+  [638]  LEFT     100 steps
+  [639]  LEFT     100 steps
+  [640]  LEFT     100 steps
+  [641]  LEFT     100 steps
+  [642]  LEFT     100 steps
+  [643]  LEFT     100 steps
+  [644]  LEFT     100 steps
+  [645]  LEFT     100 steps
+  [646]  LEFT     100 steps
+  [647]  LEFT     100 steps
+  [648]  LEFT     100 steps
+  [649]  LEFT     100 steps
+  [650]  LEFT     100 steps
+  [651]  LEFT     100 steps
+  [652]  LEFT     100 steps
+  [653]  LEFT     100 steps
+  [654]  LEFT     100 steps
+  [655]  LEFT     100 steps
+  [656]  LEFT     100 steps
+  [657]  LEFT     100 steps
+  [658]  LEFT     100 steps
+  [659]  LEFT     100 steps
+  [660]  LEFT     100 steps
+  [661]  LEFT     100 steps
+  [662]  LEFT     100 steps
+  [663]  LEFT     100 steps
+  [664]  LEFT     100 steps
+  [665]  LEFT     100 steps
+  [666]  LEFT     100 steps
+  [667]  LEFT     100 steps
+  [668]  LEFT     100 steps
+  [669]  LEFT     100 steps
+  [670]  LEFT     100 steps
+  [671]  LEFT     100 steps
+  [672]  LEFT     100 steps
+  [673]  LEFT     100 steps
+  [674]  LEFT     100 steps
+  [675]  LEFT     100 steps
+  [676]  LEFT     100 steps
+  [677]  LEFT     100 steps
+  [678]  LEFT     100 steps
+  [679]  LEFT     100 steps
+  [680]  LEFT     100 steps
+  [681]  LEFT     100 steps
+  [682]  LEFT     100 steps
+  [683]  LEFT     100 steps
+  [684]  LEFT     100 steps
+  [685]  LEFT     100 steps
+  [686]  LEFT     100 steps
+  [687]  LEFT     100 steps
+  [688]  LEFT     100 steps
+  [689]  LEFT     100 steps
+  [690]  LEFT     100 steps
+  [691]  LEFT     100 steps
+  [692]  LEFT     100 steps
+  [693]  LEFT     100 steps
+  [694]  LEFT     100 steps
+  [695]  LEFT     100 steps
+  [696]  LEFT     100 steps
+  [697]  DOWN     100 steps
+  [698]  DOWN     100 steps
+  [699]  DOWN     100 steps
+  [700]  DOWN     100 steps
+  [701]  DOWN     100 steps
+  [702]  DOWN     100 steps
+  [703]  DOWN      20 steps
+  [704] RIGHT     100 steps
+  [705] RIGHT     100 steps
+  [706] RIGHT     100 steps
+  [707] RIGHT     100 steps
+  [708] RIGHT     100 steps
+  [709] RIGHT     100 steps
+  [710] RIGHT     100 steps
+  [711] RIGHT     100 steps
+  [712] RIGHT     100 steps
+  [713] RIGHT     100 steps
+  [714] RIGHT     100 steps
+  [715] RIGHT     100 steps
+  [716] RIGHT     100 steps
+  [717] RIGHT     100 steps
+  [718] RIGHT     100 steps
+  [719] RIGHT     100 steps
+  [720] RIGHT     100 steps
+  [721] RIGHT     100 steps
+  [722] RIGHT     100 steps
+  [723] RIGHT     100 steps
+  [724] RIGHT     100 steps
+  [725] RIGHT     100 steps
+  [726] RIGHT     100 steps
+  [727] RIGHT     100 steps
+  [728] RIGHT     100 steps
+  [729] RIGHT     100 steps
+  [730] RIGHT     100 steps
+  [731] RIGHT     100 steps
+  [732] RIGHT     100 steps
+  [733] RIGHT     100 steps
+  [734] RIGHT     100 steps
+  [735] RIGHT     100 steps
+  [736] RIGHT     100 steps
+  [737] RIGHT     100 steps
+  [738] RIGHT     100 steps
+  [739] RIGHT     100 steps
+  [740] RIGHT     100 steps
+  [741] RIGHT     100 steps
+  [742] RIGHT     100 steps
+  [743] RIGHT     100 steps
+  [744] RIGHT     100 steps
+  [745] RIGHT     100 steps
+  [746] RIGHT     100 steps
+  [747] RIGHT     100 steps
+  [748] RIGHT     100 steps
+  [749] RIGHT     100 steps
+  [750] RIGHT     100 steps
+  [751] RIGHT     100 steps
+  [752] RIGHT     100 steps
+  [753] RIGHT     100 steps
+  [754] RIGHT     100 steps
+  [755] RIGHT     100 steps
+  [756] RIGHT     100 steps
+  [757] RIGHT     100 steps
+  [758] RIGHT     100 steps
+  [759] RIGHT     100 steps
+  [760] RIGHT     100 steps
+  [761] RIGHT     100 steps
+  [762] RIGHT     100 steps
+  [763] RIGHT     100 steps
+  [764] RIGHT     100 steps
+  [765] RIGHT     100 steps
+  [766] RIGHT     100 steps
+  [767] RIGHT     100 steps
+  [768] RIGHT     100 steps
+  [769] RIGHT     100 steps
+  [770] RIGHT     100 steps
+  [771] RIGHT     100 steps
+  [772] RIGHT     100 steps
+  [773] RIGHT     100 steps
+  [774] RIGHT     100 steps
+  [775]  DOWN     100 steps
+  [776]  DOWN     100 steps
+  [777]  DOWN     100 steps
+  [778]  DOWN     100 steps
+  [779]  DOWN     100 steps
+  [780]  DOWN     100 steps
+  [781]  DOWN      20 steps
+  [782]  LEFT     100 steps
+  [783]  LEFT     100 steps
+  [784]  LEFT     100 steps
+  [785]  LEFT     100 steps
+  [786]  LEFT     100 steps
+  [787]  LEFT     100 steps
+  [788]  LEFT     100 steps
+  [789]  LEFT     100 steps
+  [790]  LEFT     100 steps
+  [791]  LEFT     100 steps
+  [792]  LEFT     100 steps
+  [793]  LEFT     100 steps
+  [794]  LEFT     100 steps
+  [795]  LEFT     100 steps
+  [796]  LEFT     100 steps
+  [797]  LEFT     100 steps
+  [798]  LEFT     100 steps
+  [799]  LEFT     100 steps
+  [800]  LEFT     100 steps
+  [801]  LEFT     100 steps
+  [802]  LEFT     100 steps
+  [803]  LEFT     100 steps
+  [804]  LEFT     100 steps
+  [805]  LEFT     100 steps
+  [806]  LEFT     100 steps
+  [807]  LEFT     100 steps
+  [808]  LEFT     100 steps
+  [809]  LEFT     100 steps
+  [810]  LEFT     100 steps
+  [811]  LEFT     100 steps
+  [812]  LEFT     100 steps
+  [813]  LEFT     100 steps
+  [814]  LEFT     100 steps
+  [815]  LEFT     100 steps
+  [816]  LEFT     100 steps
+  [817]  LEFT     100 steps
+  [818]  LEFT     100 steps
+  [819]  LEFT     100 steps
+  [820]  LEFT     100 steps
+  [821]  LEFT     100 steps
+  [822]  LEFT     100 steps
+  [823]  LEFT     100 steps
+  [824]  LEFT     100 steps
+  [825]  LEFT     100 steps
+  [826]  LEFT     100 steps
+  [827]  LEFT     100 steps
+  [828]  LEFT     100 steps
+  [829]  LEFT     100 steps
+  [830]  LEFT     100 steps
+  [831]  LEFT     100 steps
+  [832]  LEFT     100 steps
+  [833]  LEFT     100 steps
+  [834]  LEFT     100 steps
+  [835]  LEFT     100 steps
+  [836]  LEFT     100 steps
+  [837]  LEFT     100 steps
+  [838]  LEFT     100 steps
+  [839]  LEFT     100 steps
+  [840]  LEFT     100 steps
+  [841]  LEFT     100 steps
+  [842]  LEFT     100 steps
+  [843]  LEFT     100 steps
+  [844]  LEFT     100 steps
+  [845]  LEFT     100 steps
+  [846]  LEFT     100 steps
+  [847]  LEFT     100 steps
+  [848]  LEFT     100 steps
+  [849]  LEFT     100 steps
+  [850]  LEFT     100 steps
+  [851]  LEFT     100 steps
+  [852]  LEFT     100 steps
+  [853]  DOWN     100 steps
+  [854]  DOWN     100 steps
+  [855]  DOWN     100 steps
+  [856]  DOWN     100 steps
+  [857]  DOWN     100 steps
+  [858]  DOWN     100 steps
+  [859]  DOWN      20 steps
+  [860] RIGHT     100 steps
+  [861] RIGHT     100 steps
+  [862] RIGHT     100 steps
+  [863] RIGHT     100 steps
+  [864] RIGHT     100 steps
+  [865] RIGHT     100 steps
+  [866] RIGHT     100 steps
+  [867] RIGHT     100 steps
+  [868] RIGHT     100 steps
+  [869] RIGHT     100 steps
+  [870] RIGHT     100 steps
+  [871] RIGHT     100 steps
+  [872] RIGHT     100 steps
+  [873] RIGHT     100 steps
+  [874] RIGHT     100 steps
+  [875] RIGHT     100 steps
+  [876] RIGHT     100 steps
+  [877] RIGHT     100 steps
+  [878] RIGHT     100 steps
+  [879] RIGHT     100 steps
+  [880] RIGHT     100 steps
+  [881] RIGHT     100 steps
+  [882] RIGHT     100 steps
+  [883] RIGHT     100 steps
+  [884] RIGHT     100 steps
+  [885] RIGHT     100 steps
+  [886] RIGHT     100 steps
+  [887] RIGHT     100 steps
+  [888] RIGHT     100 steps
+  [889] RIGHT     100 steps
+  [890] RIGHT     100 steps
+  [891] RIGHT     100 steps
+  [892] RIGHT     100 steps
+  [893] RIGHT     100 steps
+  [894] RIGHT     100 steps
+  [895] RIGHT     100 steps
+  [896] RIGHT     100 steps
+  [897] RIGHT     100 steps
+  [898] RIGHT     100 steps
+  [899] RIGHT     100 steps
+  [900] RIGHT     100 steps
+  [901] RIGHT     100 steps
+  [902] RIGHT     100 steps
+  [903] RIGHT     100 steps
+  [904] RIGHT     100 steps
+  [905] RIGHT     100 steps
+  [906] RIGHT     100 steps
+  [907] RIGHT     100 steps
+  [908] RIGHT     100 steps
+  [909] RIGHT     100 steps
+  [910] RIGHT     100 steps
+  [911] RIGHT     100 steps
+  [912] RIGHT     100 steps
+  [913] RIGHT     100 steps
+  [914] RIGHT     100 steps
+  [915] RIGHT     100 steps
+  [916] RIGHT     100 steps
+  [917] RIGHT     100 steps
+  [918] RIGHT     100 steps
+  [919] RIGHT     100 steps
+  [920] RIGHT     100 steps
+  [921] RIGHT     100 steps
+  [922] RIGHT     100 steps
+  [923] RIGHT     100 steps
+  [924] RIGHT     100 steps
+  [925] RIGHT     100 steps
+  [926] RIGHT     100 steps
+  [927] RIGHT     100 steps
+  [928] RIGHT     100 steps
+  [929] RIGHT     100 steps
+  [930] RIGHT     100 steps
+  [931]  DOWN     100 steps
+  [932]  DOWN     100 steps
+  [933]  DOWN     100 steps
+  [934]  DOWN     100 steps
+  [935]  DOWN     100 steps
+  [936]  DOWN     100 steps
+  [937]  DOWN      20 steps
+------------------------------------------------------------
+  净水平位移 (Net X): +3000 steps
+  净垂直位移 (Net Y): +3220 steps
+  总动作数:           937
+============================================================

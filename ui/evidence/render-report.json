@@ -1,0 +1,50 @@
+{
+  "contract": "See browser-qa.md: local chip scan map review with stored segmentation, skeleton, path, and motion artifacts.",
+  "targetViewports": ["1440x900", "390x844"],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Chrome accessibility snapshot showed named regions and controls; Tab reached the import button with a visible focus ring, and the live DOM check found no unlabeled interactive controls."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "At 1440x900, 390x844, and 340x740, the document width matched the viewport and the sample inspector reflowed below the map on mobile."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "pass",
+      "evidence": "A delayed sample-data fetch left the loading placeholder visible until the map and records completed loading."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "A custom image without coordinates showed zero scan records, an empty-record message, and a no-path response from playback."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "Rejected sample-data requests showed a recovery action; reloading the stored sample restored the map."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "A custom map loaded without associated segmentation, skeleton, route, or motion data; metadata marked the data unassociated and unavailable layer controls were disabled."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "The test4 and Map repository samples loaded their images, coordinates, and motion metadata in the browser."
+    },
+    "permission": {
+      "status": "not-applicable",
+      "reason": "This local review page has no account, role, or project-access gate."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x900",
+      "artifact": "browser-qa.md",
+      "observation": "The rendered desktop view was visually reviewed: the navigation rail, map review canvas, path controls, and inspector fit in the viewport."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "browser-qa.md",
+      "observation": "The rendered mobile view was visually reviewed: controls remain legible, the inspector flows below the map, and no horizontal overflow occurs."
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+============================================================
+驱动器运动总结
+============================================================
+  [  1]    UP     100 steps
+  [  2]    UP     100 steps
+  [  3]    UP     100 steps
+  [  4]    UP     100 steps
+  [  5]    UP     100 steps
+  [  6]    UP     100 steps
+  [  7]    UP     100 steps
+  [  8]    UP     100 steps
+  [  9]    UP     100 steps
+  [ 10]  LEFT     100 steps
+  [ 11]  LEFT     100 steps
+  [ 12]  LEFT     100 steps
+  [ 13]  LEFT     100 steps
+  [ 14]  LEFT     100 steps
+  [ 15]  LEFT     100 steps
+  [ 16]  LEFT     100 steps
+  [ 17]  LEFT     100 steps
+  [ 18]  LEFT     100 steps
+  [ 19]  LEFT     100 steps
+  [ 20] RIGHT     100 steps
+  [ 21] RIGHT     100 steps
+  [ 22] RIGHT     100 steps
+  [ 23] RIGHT     100 steps
+  [ 24] RIGHT     100 steps
+  [ 25] RIGHT     100 steps
+  [ 26] RIGHT     100 steps
+  [ 27] RIGHT     100 steps
+  [ 28] RIGHT     100 steps
+  [ 29] RIGHT     100 steps
+  [ 30]  DOWN     100 steps
+  [ 31]  DOWN     100 steps
+  [ 32]  DOWN     100 steps
+  [ 33]  DOWN     100 steps
+  [ 34]  DOWN     100 steps
+  [ 35]  DOWN     100 steps
+  [ 36]  DOWN      20 steps
+  [ 37]  LEFT     100 steps
+  [ 38]  LEFT     100 steps
+  [ 39]  LEFT     100 steps
+  [ 40]  LEFT     100 steps
+  [ 41]  LEFT     100 steps
+  [ 42]  LEFT     100 steps
+  [ 43]  LEFT     100 steps
+  [ 44]  LEFT     100 steps
+  [ 45]  LEFT     100 steps
+  [ 46]  LEFT     100 steps
+  [ 47]  DOWN     100 steps
+  [ 48]  DOWN     100 steps
+  [ 49]  DOWN     100 steps
+  [ 50]  DOWN     100 steps
+  [ 51]  DOWN     100 steps
+  [ 52]  DOWN     100 steps
+  [ 53]  DOWN      20 steps
+------------------------------------------------------------
+  净水平位移 (Net X): -1000 steps
+  净垂直位移 (Net Y): +340 steps
+  总动作数:           53
+============================================================

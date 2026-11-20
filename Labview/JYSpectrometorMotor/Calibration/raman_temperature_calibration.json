@@ -1,0 +1,22 @@
+{
+  "reference_shift_cm-1": 520.0,
+  "temperature_model": {
+    "type": "linear_shift",
+    "slope_a": -2.5,
+    "intercept_b": 25.0
+  },
+  "peak_search": {
+    "start_cm-1": 500.0,
+    "end_cm-1": 550.0,
+    "min_snr": 3.0
+  },
+  "axis": {
+    "axis_file": "",
+    "axis_start_cm-1": null,
+    "axis_step_cm-1": null
+  },
+  "export": {
+    "default_output_dir": "Results/Temperature_Data",
+    "decimals": 4
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "scan_config": {
+    "frame_size": "1028x776",
+    "corner_roi_size": 80,
+    "corner_threshold": 0.25,
+    "overlap_ratio": 0.2,
+    "corner_confirm": 4,
+    "lock_margin": 10,
+    "skeleton_radius": 1,
+    "skeleton_min_length": 5
+  },
+  "physical_corners": {
+    "TOP_LEFT": {
+      "locked": false,
+      "pos": null,
+      "consecutive": 0
+    },
+    "TOP_RIGHT": {
+      "locked": false,
+      "pos": null,
+      "consecutive": 0
+    },
+    "BOTTOM_LEFT": {
+      "locked": false,
+      "pos": null,
+      "consecutive": 1
+    },
+    "BOTTOM_RIGHT": {
+      "locked": false,
+      "pos": null,
+      "consecutive": 0
+    }
+  },
+  "inferred_boundaries": {
+    "TOP": null,
+    "BOTTOM": null,
+    "LEFT": null,
+    "RIGHT": null
+  },
+  "skeleton_info": {
+    "total_pixels": 8142,
+    "longest_path_length": 2038
+  },
+  "records": [
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "UP",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "RIGHT",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 20
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "LEFT",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 100
+    },
+    {
+      "direction": "DOWN",
+      "steps": 20
+    }
+  ],
+  "net_x_steps": -1000,
+  "net_y_steps": 340,
+  "total_rows": 2
+}
